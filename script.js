@@ -279,3 +279,36 @@ document.querySelectorAll('.social-links button[title*="coming soon"]').forEach(
   button.disabled = true;
   button.setAttribute('aria-disabled', 'true');
 });
+
+const whoDialog = document.querySelector('#who-dialog');
+const whoTrigger = document.querySelector('.who-trigger');
+if (whoDialog && whoTrigger) {
+  const closeWhoDialog = () => whoDialog.close();
+  whoTrigger.addEventListener('click', () => whoDialog.showModal());
+  whoDialog.querySelector('.who-dialog-close')?.addEventListener('click', closeWhoDialog);
+  whoDialog.addEventListener('click', (event) => { if (event.target === whoDialog) closeWhoDialog(); });
+  whoDialog.querySelector('.who-dialog-cta')?.addEventListener('click', closeWhoDialog);
+}
+
+document.querySelectorAll('[data-copy-email]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const email = button.dataset.copyEmail;
+    const status = button.closest('.who-email-block')?.querySelector('.copy-status');
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      const field = document.createElement('textarea');
+      field.value = email;
+      field.setAttribute('readonly', '');
+      field.style.position = 'fixed';
+      field.style.opacity = '0';
+      document.body.append(field);
+      field.select();
+      document.execCommand('copy');
+      field.remove();
+    }
+    button.textContent = 'COPIED ✓';
+    if (status) status.textContent = 'Email copied to your clipboard.';
+    window.setTimeout(() => { button.textContent = 'COPY'; }, 1800);
+  });
+});

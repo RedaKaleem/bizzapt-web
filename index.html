@@ -79,20 +79,39 @@
 
     <section class="mission-vision" aria-labelledby="mission-vision-title">
       <header class="mission-vision-head">
-        <p class="section-tag">[ WHO ARE WE? ]</p>
+        <button class="section-tag who-trigger" type="button" aria-haspopup="dialog" aria-controls="who-dialog">[ WHO ARE WE? ] <span>↗</span></button>
         <h2 id="mission-vision-title">Built with direction.<br><em>Designed for growth.</em></h2>
       </header>
       <div class="mission-vision-grid">
+        <article class="bizzapt-card">
+          <div class="mv-label"><span>01</span><h3>What is Bizzapt?</h3></div>
+          <p>Bizzapt is a multidisciplinary digital growth studio that connects strategy, branding, data, design, and development to help ambitious businesses build, grow, and scale.</p>
+        </article>
         <article class="vision-card">
-          <div class="mv-label"><span>01</span><h3>Vision</h3></div>
+          <div class="mv-label"><span>02</span><h3>Vision</h3></div>
           <p>To become a universal, industry-focused strategic collaborator delivering intelligent, secure solutions with seamless cross-platform connectivity.</p>
         </article>
         <article class="mission-card">
-          <div class="mv-label"><span>02</span><h3>Mission</h3></div>
+          <div class="mv-label"><span>03</span><h3>Mission</h3></div>
           <p>To help businesses build, grow, and scale through innovative digital solutions, intelligent automation, secure technology, and industry-specific services.</p>
         </article>
       </div>
     </section>
+
+    <dialog class="who-dialog" id="who-dialog" aria-labelledby="who-dialog-title">
+      <div class="who-dialog-inner">
+        <button class="who-dialog-close" type="button" aria-label="Close Who We Are popup">×</button>
+        <p class="section-tag">[ GET TO KNOW BIZZAPT ]</p>
+        <h2 id="who-dialog-title">Ideas become clearer<br><em>when everything connects.</em></h2>
+        <p>We are a collaborative digital studio bringing business thinking, creative direction, data intelligence, and technology into one focused partnership.</p>
+        <div class="who-email-block">
+          <span>START A CONVERSATION</span>
+          <div><code id="who-email">bizzaptenterprises@gmail.com</code><button type="button" data-copy-email="bizzaptenterprises@gmail.com">COPY</button></div>
+          <small class="copy-status" aria-live="polite">Tap copy to save the address.</small>
+        </div>
+        <a href="#contact" class="who-dialog-cta">GET TO KNOW MORE <span>↘</span></a>
+      </div>
+    </dialog>
 
     <section class="core-values" aria-labelledby="values-title">
       <div class="values-bg" aria-hidden="true">
