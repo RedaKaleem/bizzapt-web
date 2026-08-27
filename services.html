@@ -7,6 +7,8 @@
   <title>
    Services — Bizzapt
   </title>
+  <link href="assets/logo.svg" media="(prefers-color-scheme: light)" rel="icon" type="image/svg+xml"/>
+  <link href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)" rel="icon" type="image/png"/>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,700;1,700&amp;display=swap" rel="stylesheet"/>
@@ -64,20 +66,20 @@
    </section>
    <section class="service-studio">
     <div class="service-tabs" role="tablist">
-     <button data-service-tab="branding" role="tab">
+     <button id="service-tab-branding" data-service-tab="branding" role="tab" aria-controls="branding" aria-selected="true">
       Branding
      </button>
-     <button data-service-tab="data" role="tab">
+     <button id="service-tab-data" data-service-tab="data" role="tab" aria-controls="data" aria-selected="false">
       Data Analytics
      </button>
-     <button data-service-tab="web-design" role="tab">
+     <button id="service-tab-web-design" data-service-tab="web-design" role="tab" aria-controls="web-design" aria-selected="false">
       Web Design
      </button>
-     <button data-service-tab="web-development" role="tab">
+     <button id="service-tab-web-development" data-service-tab="web-development" role="tab" aria-controls="web-development" aria-selected="false">
       Web Development
      </button>
     </div>
-    <div class="service-world brand-world" data-service-world="branding">
+    <div class="service-world brand-world" id="branding" data-service-world="branding" role="tabpanel" aria-labelledby="service-tab-branding">
      <div class="world-copy">
       <p class="section-tag">
        [ BRANDING ]
@@ -138,7 +140,7 @@
       </div>
      </div>
     </div>
-    <div class="service-world data-world" data-service-world="data">
+    <div class="service-world data-world" id="data" data-service-world="data" role="tabpanel" aria-labelledby="service-tab-data">
      <div class="world-copy">
       <p class="section-tag">
        [ DATA ANALYTICS ]
@@ -326,7 +328,7 @@
       </div>
      </div>
     </div>
-    <div class="service-world design-world" data-service-world="web-design">
+    <div class="service-world design-world" id="web-design" data-service-world="web-design" role="tabpanel" aria-labelledby="service-tab-web-design">
      <div class="world-copy">
       <p class="section-tag">
        [ WEB DESIGN ]
@@ -569,7 +571,7 @@
       </div>
      </div>
     </div>
-    <div class="service-world dev-world" data-service-world="web-development">
+    <div class="service-world dev-world" id="web-development" data-service-world="web-development" role="tabpanel" aria-labelledby="service-tab-web-development">
      <div class="world-copy">
       <p class="section-tag">
        [ WEB DEVELOPMENT ]

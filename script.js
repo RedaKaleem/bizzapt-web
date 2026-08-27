@@ -1,29 +1,86 @@
 const cards = [...document.querySelectorAll('.flip-card')];
 
+// Shared accessibility foundations for every page.
+const pageMain = document.querySelector('main');
+if (pageMain) {
+  pageMain.id ||= 'main-content';
+  pageMain.tabIndex = -1;
+  if (!document.querySelector('.skip-link')) {
+    const skipLink = document.createElement('a');
+    skipLink.className = 'skip-link';
+    skipLink.href = `#${pageMain.id}`;
+    skipLink.textContent = 'Skip to main content';
+    document.body.prepend(skipLink);
+  }
+}
+document.querySelectorAll('.noise, .page-atmosphere, .contact-art').forEach((item) => item.setAttribute('aria-hidden', 'true'));
+document.querySelectorAll('button:not([type])').forEach((button) => { button.type = 'button'; });
+document.querySelectorAll('a[target="_blank"]').forEach((link) => { link.rel = 'noopener noreferrer'; });
+document.querySelectorAll('img').forEach((image) => {
+  image.decoding ||= 'async';
+  if (!image.closest('.site-header, .site-footer, dialog') && !image.hasAttribute('loading')) image.loading = 'lazy';
+});
+document.querySelectorAll('.desktop-nav').forEach((nav, index) => {
+  nav.id ||= `primary-navigation-${index + 1}`;
+  nav.setAttribute('aria-label', 'Primary navigation');
+  nav.querySelectorAll('a').forEach((link) => {
+    const linkPage = new URL(link.href, location.href).pathname.split('/').pop() || 'index.html';
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    if (linkPage === currentPage) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+});
+
 cards.forEach((card) => {
+  const front = card.querySelector('.front');
+  const back = card.querySelector('.back');
+  front?.setAttribute('aria-hidden', 'false');
+  back?.setAttribute('aria-hidden', 'true');
   card.addEventListener('click', () => {
+    if (card.classList.contains('is-flipped') && card.dataset.cta) {
+      document.querySelector(card.dataset.cta)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
     const willOpen = !card.classList.contains('is-flipped');
     cards.forEach((item) => {
       item.classList.remove('is-flipped');
       item.setAttribute('aria-pressed', 'false');
+      item.querySelector('.front')?.setAttribute('aria-hidden', 'false');
+      item.querySelector('.back')?.setAttribute('aria-hidden', 'true');
     });
     if (willOpen) {
       card.classList.add('is-flipped');
       card.setAttribute('aria-pressed', 'true');
+      front?.setAttribute('aria-hidden', 'true');
+      back?.setAttribute('aria-hidden', 'false');
     }
   });
 });
 
-document.querySelectorAll('#year, .current-year').forEach((item) => { item.textContent = new Date().getFullYear(); });
+document.querySelectorAll('#year, .current-year').forEach((item) => { item.textContent = '2025'; });
 
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.desktop-nav');
 if (menuToggle && navigation) {
+  menuToggle.setAttribute('aria-controls', navigation.id);
+  const closeMenu = ({ returnFocus = false } = {}) => {
+    navigation.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation');
+    menuToggle.textContent = 'MENU';
+    if (returnFocus) menuToggle.focus();
+  };
   menuToggle.addEventListener('click', () => {
     const open = navigation.classList.toggle('is-open');
     menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     menuToggle.textContent = open ? 'CLOSE' : 'MENU';
+    if (open) navigation.querySelector('a')?.focus();
   });
+  navigation.addEventListener('click', (event) => { if (event.target.closest('a')) closeMenu(); });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && navigation.classList.contains('is-open')) closeMenu({ returnFocus: true }); });
+  document.addEventListener('click', (event) => { if (navigation.classList.contains('is-open') && !event.target.closest('.site-header')) closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 850) closeMenu(); });
 }
 
 const serviceTabs = [...document.querySelectorAll('[data-service-tab]')];
@@ -34,29 +91,73 @@ function activateService(id) {
     const active = tab.dataset.serviceTab === id;
     tab.classList.toggle('active', active);
     tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
   });
-  serviceWorlds.forEach((world) => world.classList.toggle('active', world.dataset.serviceWorld === id));
+  serviceWorlds.forEach((world) => {
+    const active = world.dataset.serviceWorld === id;
+    world.classList.toggle('active', active);
+    world.hidden = !active;
+  });
 }
-serviceTabs.forEach((tab) => tab.addEventListener('click', () => {
-  activateService(tab.dataset.serviceTab);
-  history.replaceState(null, '', `#${tab.dataset.serviceTab}`);
-}));
-if (serviceTabs.length) activateService(location.hash.slice(1) || 'branding');
+serviceTabs.forEach((tab, index) => {
+  const id = tab.dataset.serviceTab;
+  const panel = serviceWorlds.find((world) => world.dataset.serviceWorld === id);
+  tab.id ||= `service-tab-${id}`;
+  tab.setAttribute('aria-controls', id);
+  if (panel) {
+    panel.id = id;
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tab.id);
+    panel.tabIndex = 0;
+  }
+  tab.addEventListener('click', () => {
+    activateService(id);
+    history.replaceState(null, '', `#${id}`);
+  });
+  tab.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let next = index;
+    if (event.key === 'ArrowRight') next = (index + 1) % serviceTabs.length;
+    if (event.key === 'ArrowLeft') next = (index - 1 + serviceTabs.length) % serviceTabs.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = serviceTabs.length - 1;
+    serviceTabs[next].click();
+    serviceTabs[next].focus();
+  });
+});
+if (serviceTabs.length) {
+  const requestedService = location.hash.slice(1);
+  const initialService = serviceTabs.some((tab) => tab.dataset.serviceTab === requestedService) ? requestedService : 'branding';
+  activateService(initialService);
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    if (serviceTabs.some((tab) => tab.dataset.serviceTab === id)) activateService(id);
+  });
+}
 
 const folders = [...document.querySelectorAll('[data-folder]')];
 folders.forEach((folder) => {
   const trigger = folder.querySelector('.folder-summary');
+  const reveal = folder.querySelector('.folder-reveal');
+  const folderId = `folder-${folders.indexOf(folder) + 1}-content`;
+  if (reveal) reveal.id = folderId;
+  if (reveal) reveal.inert = true;
+  trigger.setAttribute('aria-controls', folderId);
   trigger.addEventListener('click', () => {
     const opening = !folder.classList.contains('is-open');
     folders.forEach((item) => {
       item.classList.remove('is-open');
       item.querySelector('.folder-summary').setAttribute('aria-expanded', 'false');
       item.querySelector('.folder-summary b').textContent = 'OPEN FOLDER +';
+      const itemReveal = item.querySelector('.folder-reveal');
+      if (itemReveal) itemReveal.inert = true;
     });
     if (opening) {
       folder.classList.add('is-open');
       trigger.setAttribute('aria-expanded', 'true');
       trigger.querySelector('b').textContent = 'CLOSE FOLDER −';
+      if (reveal) reveal.inert = false;
     }
   });
 });
@@ -79,22 +180,49 @@ partnerFilters.forEach((button) => button.addEventListener('click', () => filter
 if (partnerFilters.length) filterPartners('all');
 
 const projectForm = document.querySelector('#project-form');
-if (projectForm) projectForm.addEventListener('submit', (event) => {
+if (projectForm) projectForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!projectForm.reportValidity()) return;
-  const data = new FormData(projectForm);
-  const subject = `New Bizzapt project enquiry — ${data.get('company') || data.get('name')}`;
-  const body = [
-    `Name: ${data.get('name')}`,
-    `Email: ${data.get('email')}`,
-    `Company: ${data.get('company') || 'Not provided'}`,
-    `Stage: ${data.get('stage')}`,
-    `Service: ${data.get('service')}`,
-    '',
-    'Project goal:',
-    data.get('goal')
-  ].join('\n');
-  window.location.href = `mailto:bizzaptenterprises@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  const submitButton = projectForm.querySelector('[type="submit"]');
+  const status = projectForm.querySelector('#form-status');
+  const defaultLabel = submitButton?.dataset.defaultLabel || 'SEND PROJECT BRIEF';
+  const setButtonLabel = (label, arrow = '') => {
+    if (submitButton) submitButton.innerHTML = `${label}${arrow ? ` <span>${arrow}</span>` : ''}`;
+  };
+
+  status.hidden = true;
+  status.className = 'form-status';
+  submitButton.disabled = true;
+  submitButton.setAttribute('aria-busy', 'true');
+  setButtonLabel('SENDING…');
+
+  try {
+    const response = await fetch(projectForm.action, {
+      method: 'POST',
+      body: new FormData(projectForm),
+      headers: { Accept: 'application/json' }
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const message = result.errors?.map((error) => error.message).join(' ') || 'We couldn’t send your brief. Please check the form and try again.';
+      throw new Error(message);
+    }
+
+    projectForm.reset();
+    status.textContent = 'Brief received. Thanks for trusting us with your idea—we’ll be in touch within 24 hours.';
+    status.classList.add('is-success');
+    status.hidden = false;
+    setButtonLabel('BRIEF SENT', '✓');
+  } catch (error) {
+    status.textContent = error.message || 'Something went wrong. Please try again or email bizzaptenterprises@gmail.com.';
+    status.classList.add('is-error');
+    status.hidden = false;
+    setButtonLabel(defaultLabel, '↗');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.removeAttribute('aria-busy');
+  }
 });
 
 document.querySelectorAll('.site-header .brand').forEach((brand) => {
@@ -107,11 +235,60 @@ document.querySelectorAll('.site-header .brand').forEach((brand) => {
 const legacyFooter = document.querySelector('footer:not(.site-footer)');
 if (legacyFooter) {
   legacyFooter.className = 'site-footer';
-  legacyFooter.innerHTML = `<div class="footer-main"><a class="footer-logo" href="index.html" aria-label="Bizzapt Enterprises home"><img src="assets/brand-logo-dark.png" alt="Bizzapt Enterprises — Build, Grow, Scale"></a><div class="footer-column"><h2>Services</h2><a href="services.html#branding">Branding</a><a href="services.html#data">Data + AI</a><a href="services.html#web-design">Web Design</a><a href="services.html#web-development">Web Development</a></div><div class="footer-column"><h2>Explore</h2><a href="index.html">Home</a><a href="projects.html">Our Projects</a><a href="team.html">Team</a><a href="index.html#contact">Start a Project</a></div><div class="footer-connect"><h2>Stay connected</h2><a class="footer-email" href="mailto:bizzaptenterprises@gmail.com">bizzaptenterprises@gmail.com</a><div class="social-links" aria-label="Bizzapt social profiles"><button type="button" aria-label="Instagram profile link coming soon" title="Instagram link coming soon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></button><button type="button" aria-label="LinkedIn profile link coming soon" title="LinkedIn link coming soon"><svg viewBox="0 0 24 24"><path d="M6 9v9M6 6v.01M10 18v-5a4 4 0 0 1 8 0v5M10 9v9"/></svg></button><button type="button" aria-label="Facebook profile link coming soon" title="Facebook link coming soon"><svg viewBox="0 0 24 24"><path d="M14 21v-8h3l.5-4H14V7c0-1.2.4-2 2-2h2V2.3c-.7-.2-1.7-.3-3-.3-3 0-5 1.8-5 5v2H7v4h3v8"/></svg></button></div><small>Social links will be connected when supplied.</small></div></div><div class="footer-bottom"><p>Saudi Arabia · India · UAE & beyond</p><p>© <span class="current-year">${new Date().getFullYear()}</span> Bizzapt Enterprises</p><a href="#top">BACK TO TOP ↑</a></div>`;
+  legacyFooter.innerHTML = `<div class="footer-main"><a class="footer-logo" href="index.html" aria-label="Bizzapt Enterprises home"><img src="assets/brand-logo-dark.png" alt="Bizzapt Enterprises — Build, Grow, Scale"></a><div class="footer-column"><h2>Services</h2><a href="services.html#branding">Branding</a><a href="services.html#data">Data + AI</a><a href="services.html#web-design">Web Design</a><a href="services.html#web-development">Web Development</a></div><div class="footer-column"><h2>Explore</h2><a href="index.html">Home</a><a href="projects.html">Our Projects</a><a href="team.html">Team</a><a href="index.html#contact">Start a Project</a></div><div class="footer-connect"><h2>Stay connected</h2><a class="footer-email" href="mailto:bizzaptenterprises@gmail.com">bizzaptenterprises@gmail.com</a><div class="social-links" aria-label="Bizzapt social profiles"><button type="button" aria-label="Instagram profile link coming soon" title="Instagram link coming soon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></button><button type="button" aria-label="LinkedIn profile link coming soon" title="LinkedIn link coming soon"><svg viewBox="0 0 24 24"><path d="M6 9v9M6 6v.01M10 18v-5a4 4 0 0 1 8 0v5M10 9v9"/></svg></button><button type="button" aria-label="Facebook profile link coming soon" title="Facebook link coming soon"><svg viewBox="0 0 24 24"><path d="M14 21v-8h3l.5-4H14V7c0-1.2.4-2 2-2h2V2.3c-.7-.2-1.7-.3-3-.3-3 0-5 1.8-5 5v2H7v4h3v8"/></svg></button></div><small>Social links will be connected when supplied.</small></div></div><div class="footer-bottom"><p>India • Saudi Arabia • UAE</p><p>© 2025 Bizzapt Enterprises</p><a href="#top">BACK TO TOP ↑</a></div>`;
 }
 document.querySelectorAll('.site-footer a[href="services.html#data"]').forEach((link) => { link.textContent = 'Data Analytics'; });
 
+const footerSocialProfiles = [
+  { href: 'https://www.instagram.com/bizzaptenterprises/', label: 'Bizzapt Enterprises on Instagram' },
+  { href: 'https://www.linkedin.com/in/bizzapt-enterprises', label: 'Bizzapt Enterprises on LinkedIn' },
+  { href: 'https://www.facebook.com/profile.php?id=61592254697537', label: 'Bizzapt Enterprises on Facebook' }
+];
+document.querySelectorAll('.social-links').forEach((socialGroup) => {
+  socialGroup.querySelectorAll('button').forEach((button, index) => {
+    const profile = footerSocialProfiles[index];
+    if (!profile) return;
+    const link = document.createElement('a');
+    link.href = profile.href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', profile.label);
+    link.innerHTML = button.innerHTML;
+    button.replaceWith(link);
+  });
+  const placeholderNote = socialGroup.nextElementSibling;
+  if (placeholderNote?.matches('small') && placeholderNote.textContent.includes('Social links')) placeholderNote.remove();
+});
+
 const livePreviewCards = [...document.querySelectorAll('[data-live-preview]')];
+
+document.querySelectorAll('[data-project-slideshow]').forEach((card) => {
+  const frame = card.querySelector('.project-slideshow');
+  const slides = [...card.querySelectorAll('.project-slides img')];
+  if (!frame || slides.length < 2) return;
+  let index = 0;
+  let timer;
+  const showSlide = (next) => {
+    index = next % slides.length;
+    slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
+  };
+  const start = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || timer) return;
+    card.classList.add('is-previewing');
+    timer = window.setInterval(() => showSlide(index + 1), 1500);
+  };
+  const stop = () => {
+    window.clearInterval(timer);
+    timer = undefined;
+    card.classList.remove('is-previewing');
+  };
+  frame.addEventListener('mouseenter', start);
+  frame.addEventListener('mouseleave', stop);
+  frame.addEventListener('focus', start);
+  frame.addEventListener('blur', stop);
+  frame.addEventListener('click', () => { if (timer) stop(); else start(); });
+});
+
 function mountLivePreview(card) {
   if (card.dataset.previewMounted === 'true') return;
   const visual = card.querySelector('.project-visual');
@@ -183,11 +360,41 @@ resourceLinks.forEach((link) => {
 });
 
 const teamProfiles = {
+  ahmed: {
+    name: 'Ahmed Kamraan Ali',
+    handle: 'Team Member · Computer Science',
+    role: 'Computer Science Team Member',
+    image: 'assets/team/ahmed-kamraan-placeholder.svg',
+    github: 'https://www.linkedin.com/in/ahmed-kamraan-ali-a7b137203',
+    profileLabel: 'VIEW LINKEDIN ↗',
+    portfolio: '',
+    repos: '—',
+    location: 'India',
+    focus: 'Computer Science',
+    bio: 'Computer-science learner with a practical builder mindset.',
+    about: 'Ahmed contributes a computer-science perspective to Bizzapt’s growing team, supporting the thinking and technical curiosity behind useful digital experiences.',
+    skills: ['Computer science', 'Technology', 'Problem solving', 'Team collaboration']
+  },
+  hajra: {
+    name: 'Hajra Iqbal',
+    handle: 'Founder · Bizzapt Enterprises',
+    role: 'Founder & Visionary',
+    image: 'assets/team/hajra-iqbal.jpg',
+    github: '',
+    portfolio: '',
+    repos: '—',
+    location: 'India',
+    focus: 'Vision + Leadership',
+    bio: 'The founder who started it all with a clear vision.',
+    about: 'Hajra founded Bizzapt around a simple but ambitious belief: strategy, creativity, and technology should work together. Her vision continues to guide how the team builds partnerships, makes decisions, and turns ideas into meaningful growth.',
+    skills: ['Business vision', 'Strategic direction', 'Leadership', 'Partnership building', 'Growth thinking']
+  },
   reda: {
     name: 'Reda Kaleem',
     handle: '@RedaKaleem',
-    role: 'Founder & Lead Designer',
-    image: 'https://avatars.githubusercontent.com/u/121916018?v=4',
+    role: 'Co-Founder & Lead Designer',
+    image: 'assets/team/reda-kaleem-profile.png',
+    imagePosition: '50% 28%',
     github: 'https://github.com/RedaKaleem',
     portfolio: 'https://new-port-tau-kohl.vercel.app/',
     repos: '25',
@@ -223,6 +430,7 @@ if (profileDialog && profileButtons.length) {
     const image = profileDialog.querySelector('#profile-dialog-image');
     image.src = profile.image;
     image.alt = profile.name;
+    image.style.objectPosition = profile.imagePosition || '50% 50%';
     setText('profile-dialog-name', profile.name);
     setText('profile-dialog-handle', profile.handle);
     setText('profile-dialog-role', profile.role);
@@ -233,8 +441,11 @@ if (profileDialog && profileButtons.length) {
     setText('profile-dialog-about', profile.about);
     const github = profileDialog.querySelector('#profile-dialog-github');
     const portfolio = profileDialog.querySelector('#profile-dialog-portfolio');
-    github.href = profile.github;
-    portfolio.href = profile.portfolio;
+    github.hidden = !profile.github;
+    github.textContent = profile.profileLabel || 'VIEW GITHUB ↗';
+    portfolio.hidden = !profile.portfolio;
+    if (profile.github) github.href = profile.github;
+    if (profile.portfolio) portfolio.href = profile.portfolio;
     profileDialog.querySelector('#profile-dialog-skills').innerHTML = profile.skills.map((skill) => `<li>${skill}</li>`).join('');
     profileDialog.showModal();
     document.body.classList.add('profile-modal-open');

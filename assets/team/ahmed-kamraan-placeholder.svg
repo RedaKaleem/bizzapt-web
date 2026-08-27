@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Ahmed Kamraan Ali placeholder portrait</title>
+  <desc id="desc">A refined monogram portrait with the initials AK.</desc>
+  <rect width="800" height="800" fill="#8dd4d9"/>
+  <circle cx="400" cy="400" r="292" fill="none" stroke="#60435b" stroke-opacity=".22" stroke-width="3"/>
+  <circle cx="400" cy="400" r="225" fill="#f4eee6" fill-opacity=".24"/>
+  <path d="M92 609 693 162M151 697 752 250" fill="none" stroke="#60435b" stroke-opacity=".12" stroke-width="22"/>
+  <text x="400" y="470" fill="#60435b" font-family="Georgia, 'Times New Roman', serif" font-size="245" font-weight="700" letter-spacing="-20" text-anchor="middle">AK</text>
+</svg>
