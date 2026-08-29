@@ -21,18 +21,18 @@
 
 /* Brand-guideline color stories for the card reveals. */
 .back{padding:clamp(20px,2.2vw,36px);justify-content:flex-start!important;gap:0!important}
-.back small{display:block;margin-bottom:auto;font-weight:500;line-height:1.35}
-.back strong{display:block;max-width:92%;font-size:clamp(1.6rem,2.75vw,3.25rem);letter-spacing:-.035em}
-.back p{font-size:clamp(.72rem,1vw,.95rem);line-height:1.5;max-width:90%;margin:14px 0 22px}
-.back>span:last-child{margin-top:0;font-weight:500;letter-spacing:.04em}
+.back small{display:block;margin-bottom:auto;font-size:clamp(.5rem,.58vw,.62rem);font-weight:500;line-height:1.35}
+.back strong{display:block;max-width:94%;font-size:clamp(1.15rem,1.8vw,2.05rem);line-height:1.02;letter-spacing:-.025em}
+.back p{max-width:94%;margin:9px 0 14px;font-size:clamp(.63rem,.78vw,.78rem);line-height:1.45}
+.back>span:last-child{margin-top:0;font-size:clamp(.48rem,.56vw,.6rem);font-weight:500;line-height:1.35;letter-spacing:.035em}
 .tile-one .back{background:#a98ca0!important;color:#1a1a1a}
 .tile-two .back{background:#8dd4d9!important;color:#1a1a1a}
 .tile-three .back{background:#bfa26a!important;color:#1a1a1a}
 .tile-four .back{background:#1a1a1a!important;color:#fff}
 .tile-five .back{background:#d7d7d7!important;color:#1a1a1a}
 .tile-six .back{background:linear-gradient(135deg,#a98ca0 0%,#a98ca0 52%,#bfa26a 52%,#bfa26a 100%)!important;color:#1a1a1a}
-@media(max-width:850px){.back strong{font-size:clamp(1.35rem,4vw,2.4rem)}.back p{font-size:.72rem;margin:10px 0 14px}}
-@media(max-width:520px){.back{padding:15px}.back small{font-size:.5rem}.back strong{font-size:1.15rem;line-height:1}.back p{font-size:.58rem;line-height:1.35;margin:8px 0 10px}.back>span:last-child{font-size:.46rem}}
+@media(max-width:850px){.back strong{font-size:clamp(1.05rem,2.8vw,1.6rem)}.back p{font-size:.66rem;margin:8px 0 11px}}
+@media(max-width:520px){.back{padding:15px}.back small{font-size:.46rem}.back strong{font-size:1rem;line-height:1}.back p{font-size:.53rem;line-height:1.35;margin:6px 0 8px}.back>span:last-child{font-size:.42rem}}
 
 /* Nine-card fact wall with the logo held in the true center. */
 .collage{height:min(76vw,900px);min-height:720px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr)}
@@ -804,7 +804,7 @@ body{padding-top:66px}
   .back strong{font-size:.7rem!important}
   .back p{font-size:.38rem!important}
 }
-.hero-cta-card .back{background:var(--plum)!important}
+.hero-cta-card .back{background:var(--plum)!important;color:#fff!important}
 .hero-cta-card .card-cta-label{display:inline-flex;align-items:center;width:max-content;padding:9px 12px;background:var(--acid);color:var(--ink);font-weight:800;opacity:1}
 
 /* Four distinct service folders in a compact 2 × 2 mobile cabinet. */
