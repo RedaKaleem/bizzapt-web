@@ -1,0 +1,28 @@
+/* Raise the site's reading scale without changing its display hierarchy. */
+html { font-size: 18px; }
+
+.connected-site .desktop-nav a { font-size: .78rem; }
+.connected-site .section-tag,
+.connected-site .ecosystem-number,
+.connected-site .blog-entry-meta,
+.connected-site .blog-feature-label { font-size: .76rem; }
+
+.connected-site .ecosystem-service summary,
+.connected-site .ecosystem-service p,
+.connected-site .connected-process li p,
+.connected-site .blog-feature-body > p:last-child,
+.connected-site .blog-short > p,
+.connected-site .blog-dialog > p:not(.section-tag) { font-size: 1rem; }
+
+.connected-site .blog-entry-footer,
+.connected-site .blog-open-hint,
+.connected-site .partner-disclosure > summary,
+.connected-site .footer-main { font-size: .85rem; }
+
+.connected-site .form-grid label > span { font-size: .78rem; }
+.connected-site :is(input, select, textarea) { font-size: 1rem; }
+
+@media (max-width: 600px) {
+  html { font-size: 17px; }
+  .connected-site .blog-entry-meta { font-size: .72rem; }
+}

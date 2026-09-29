@@ -1,0 +1,42 @@
+/* A light introduction gives way to a dark, luminous connection workspace. */
+.connected-site.solutions-page .solution-intro {
+  background: radial-gradient(circle at 88% 18%, #ded4d899, transparent 30%), linear-gradient(135deg, #f4eee6, #e7e5e1);
+  color: #211d1b; border-bottom: 1px solid #c9c2bd;
+}
+.solutions-page .solution-intro .section-tag { color: #60435b; }
+.solutions-page .solution-intro h1 { color: #211d1b; font-weight: 600; }
+.solutions-page .solution-intro h1 span { color: #60435b; }
+.solutions-hero-copy > p:not(.section-tag) { color: #51494d; }
+.solutions-hero-link { color: #60435b; border-color: #60435b; font-weight: 700; }
+.solutions-hero-link:hover { color: #211d1b; border-color: #211d1b; }
+.solutions-hero-side { border-color: #60435b66; }
+.solutions-hero-side > span { color: #60435b; }
+.solutions-hero-side i { background: #60435b66; }
+.solutions-hero-side p { color: #211d1b; }
+.solutions-accent-dots { opacity: .13; }
+
+.solutions-page .solution-puzzle {
+  background-color: #1d1b21;
+  background-image: radial-gradient(circle at 50% 45%, #60435b32, transparent 58%);
+  color: #f4eee6;
+}
+.solutions-page .solution-puzzle .section-tag { color: #8dd4d9; }
+.solutions-page .solution-puzzle .connected-heading h2 { color: #f4eee6; }
+.solutions-page .solution-puzzle .connected-heading > p { color: #d4c9d0; }
+.solutions-page .puzzle-piece { color: #e8dfe5; }
+.solutions-page .piece-shape path { stroke: #a391a0; stroke-opacity: .45; }
+.solutions-page .puzzle-piece.is-connected .piece-shape path { stroke-opacity: .78; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--piece-accent) 35%, transparent)); }
+.solutions-page .puzzle-piece[aria-pressed="true"],
+.solutions-page .puzzle-piece:hover .piece-content { color: #fff; }
+.solutions-page .puzzle-piece[aria-pressed="true"] .piece-shape path { stroke-opacity: 1; filter: drop-shadow(0 0 8px var(--piece-accent)); }
+.solutions-page .puzzle-piece:focus-visible .piece-shape path { stroke: #8dd4d9; }
+.solutions-page .connection-story { border-color: #f4eee638; }
+.solutions-page .connection-story .section-tag { color: #8dd4d9; }
+.solutions-page .connection-path li { color: #d5b9d0; }
+.solutions-page .connection-story > p:not(.section-tag) { color: #f4eee6; }
+.solutions-page .connection-story > small { color: #c7bac3; }
+
+@media (forced-colors: active) {
+  .solutions-page .solution-puzzle { background: Canvas; color: CanvasText; }
+  .solutions-page .piece-shape path { stroke: CanvasText; }
+}

@@ -1,0 +1,82 @@
+/* Shared spacing rhythm, kept separate from page-specific composition. */
+:root {
+  --gutter: max(clamp(24px, 6.5vw, 112px), calc((100vw - 1360px) / 2));
+  --section-space: clamp(100px, 10vw, 160px);
+  --heading-space: clamp(52px, 6vw, 88px);
+}
+.connected-site .connected-heading,
+.connected-site .ecosystem .connected-heading { margin-bottom: var(--heading-space); gap: clamp(40px, 5vw, 80px); }
+.connected-site .connected-heading > p { max-width: 35ch; line-height: 1.9; }
+.connected-site .ecosystem-simple { gap: clamp(36px, 4.5vw, 72px); }
+.ecosystem-group { padding-top: 32px; }
+.ecosystem-group h3 { margin-top: 30px; margin-bottom: 20px; }
+.ecosystem-services { margin-top: 36px; }
+.ecosystem-service summary { padding-block: 22px; }
+.ecosystem-service p { padding-bottom: 26px; }
+.ecosystem-example { margin-top: 64px; padding-top: 36px; }
+.work-timeline-heading { gap: 56px; }
+.work-timeline-steps { margin-top: 80px; }
+.work-timeline-steps li { padding-top: 34px; padding-right: 28px; }
+.work-timeline-steps h3 { margin-top: 32px; margin-bottom: 20px; }
+.work-timeline-note { margin-top: 64px; padding-top: 28px; }
+.project-peek { gap: clamp(48px, 7vw, 112px); }
+.project-peek-copy > p:not(.section-tag) { max-width: 36ch; }
+.project-peek h2 { margin-bottom: 32px; }
+.peek-cta { margin-top: 28px; margin-bottom: 24px; }
+.blog-editorial { gap: 16px; }
+.blog-feature { padding: clamp(28px, 3.4vw, 52px); }
+.blog-feature-body { padding-block: 52px 38px; }
+.blog-short { padding-block: clamp(25px, 2.6vw, 38px); }
+.blog-short h3 { margin-top: auto; margin-bottom: 14px; }
+.connected-site .philosophy header { margin-bottom: var(--heading-space); }
+.connected-site .belief summary { padding-block: 32px; }
+.connected-home .contact { gap: clamp(40px, 6vw, 96px); }
+.connected-home .contact-form { padding: clamp(28px, 3vw, 48px); }
+.connected-home .form-grid { gap: 26px 24px; }
+.connected-site .footer-main { padding-block: 88px; gap: 48px; }
+
+/* Inner pages get the same margins and breathing room as the homepage. */
+.connected-site :is(.about-intro,.projects-intro,.team-intro),
+.solutions-page .solution-intro { padding: clamp(80px,8vw,128px) var(--gutter) clamp(80px,8vw,128px); }
+.connected-site :is(.about-story,.values-grid,.about-manifesto,.founder-note,.team-directory,.team-note,.research-section,.project-note,.solution-close) {
+  padding-block: var(--section-space); padding-inline: var(--gutter);
+}
+.connected-site .project-gallery { padding: 0 var(--gutter) var(--section-space); gap: 48px; }
+.connected-site .team-directory { column-gap: 56px; row-gap: 80px; }
+.connected-site .research-grid { gap: 40px; }
+.connected-site :is(.about-story,.founder-note) p { max-width: 60ch; line-height: 1.9; }
+.solutions-page .service-studio { padding-bottom: var(--section-space); }
+.solutions-page .service-world { padding: clamp(32px,6vw,88px); gap: 64px; }
+.solutions-page .world-copy > p:not(.section-tag) { max-width: 56ch; line-height: 1.9; }
+.solutions-page .world-copy h2 { margin-block: 30px; }
+.solutions-page .service-tabs { margin-bottom: 32px; }
+.solutions-page .brand-board > div { padding: 32px; }
+
+@media (max-width: 1100px) {
+  .work-timeline-steps li { padding: 0 0 42px 28px; }
+  .work-timeline-steps h3 { margin-top: 0; margin-bottom: 16px; }
+}
+@media (max-width: 760px) {
+  :root { --gutter: 24px; --section-space: 80px; --heading-space: 40px; }
+  .connected-site .connected-heading,
+  .connected-site .ecosystem .connected-heading { grid-template-columns: 1fr; gap: 24px; }
+  .connected-site .connected-heading > p { max-width: 48ch; }
+  .connected-site .ecosystem-simple { gap: 44px; }
+  .ecosystem-group h3 { margin-top: 22px; }
+  .ecosystem-services { margin-top: 24px; }
+  .ecosystem-example { margin-top: 44px; padding-top: 28px; }
+  .work-timeline-heading { gap: 28px; }
+  .work-timeline-steps { margin-top: 48px; }
+  .work-timeline-note { margin-top: 40px; }
+  .project-peek { gap: 40px; }
+  .blog-editorial { gap: 16px; }
+  .blog-feature { padding: 28px; }
+  .blog-feature-body { padding-block: 36px; }
+  .connected-home .contact-form { padding: 24px; }
+  .connected-site .footer-main { padding-block: 64px; gap: 40px; }
+  .connected-site .team-directory { row-gap: 56px; column-gap: 28px; }
+  .connected-site .project-gallery { gap: 36px; }
+  .solutions-page .service-world { padding: 28px 22px; gap: 40px; }
+  .solutions-page .brand-board > div { padding: 24px; }
+  .solutions-page .service-tabs { margin-bottom: 24px; }
+}

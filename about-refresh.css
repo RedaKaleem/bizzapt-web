@@ -1,0 +1,103 @@
+/* The About page follows the same editorial rhythm as the homepage. */
+.connected-site .about-intro {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 510px; display: flex; flex-direction: column; justify-content: center;
+  padding: 105px var(--gutter) 95px;
+  background: radial-gradient(circle at 88% 25%, #ded4d877, transparent 32%), #f4eee6;
+}
+.connected-site .about-intro::after {
+  content: ''; position: absolute; z-index: -1; width: 265px; height: 45px;
+  top: 100px; right: var(--gutter); opacity: .48;
+  background: url('assets/design-library/circles-plum.png') center / contain no-repeat;
+}
+.connected-site .about-intro h1 {
+  max-width: 1220px; margin: 28px 0 0;
+  font-size: clamp(3.1rem, 5.8vw, 6.2rem); line-height: 1.03;
+  letter-spacing: -.055em;
+}
+
+.connected-site .about-story {
+  position: relative; grid-template-columns: minmax(0, 1.2fr) minmax(290px, .7fr);
+  gap: clamp(44px, 7vw, 110px); align-items: center;
+  padding: 105px var(--gutter) 100px;
+}
+.about-story > div { min-width: 0; }
+.about-story .section-tag { color: var(--plum); margin: 0 0 24px; }
+.connected-site .about-story .lead {
+  max-width: 29ch; margin: 0 0 34px;
+  font: 600 clamp(1.7rem, 2.5vw, 2.7rem)/1.23 var(--display);
+  letter-spacing: -.04em;
+}
+.connected-site .about-story p:not(.lead, .section-tag) {
+  max-width: 64ch; font-size: 1rem; line-height: 1.8; color: #51494d;
+}
+.connected-site .about-story aside {
+  position: relative; width: 100%; max-width: 520px; min-height: 0;
+  aspect-ratio: 1; padding: clamp(28px, 3.5vw, 50px);
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  gap: clamp(18px, 2.4vw, 34px);
+  background: #ded4d8; border: 0; overflow: hidden;
+}
+.connected-site .about-story aside img { width: min(75%, 280px); flex: none; }
+.connected-site .about-story aside > span { font-size: clamp(2.1rem, 3vw, 3.2rem); line-height: 1.04; }
+
+.connected-site .values-grid {
+  gap: 16px; padding: 30px var(--gutter) 105px;
+}
+.about-values-heading { grid-column: 1 / -1; padding: 0 0 34px; }
+.about-values-heading .section-tag { margin: 0 0 20px; color: var(--plum); }
+.about-values-heading h2 { margin: 0; font: 700 clamp(2.7rem, 4.8vw, 5rem)/1.05 var(--display); letter-spacing: -.05em; }
+.connected-site .values-grid article {
+  min-height: 255px; display: flex; flex-direction: column; align-items: flex-start;
+  padding: clamp(28px, 3vw, 42px); border: 0; border-top: 3px solid var(--plum);
+  background: #e5dce1; color: #211d1b;
+}
+.connected-site .values-grid article:nth-of-type(2) { background: #dfe8e7; border-top-color: #5e9ca2; color: #211d1b; }
+.connected-site .values-grid article:nth-of-type(3) { background: #e9e1d2; border-top-color: #bfa26a; color: #211d1b; }
+.connected-site .values-grid article > span { font: 500 .78rem var(--mono); color: var(--plum); }
+.connected-site .values-grid article h2 { margin: 38px 0 15px; font-size: clamp(2.1rem, 3vw, 3rem); }
+.connected-site .values-grid article p { max-width: 32ch; margin: auto 0 0; font-size: 1rem; line-height: 1.65; }
+
+.connected-site .philosophy { position: relative; background: #e7e5e1; }
+.connected-site .philosophy header { margin-bottom: 55px; }
+.connected-site .belief summary { padding-inline: 16px; transition: background-color .2s; }
+.connected-site .belief summary:hover, .connected-site .belief summary:focus-visible { background: #60435b0d; }
+.connected-site .belief summary > span { font-size: .76rem; color: var(--plum); }
+.connected-site .belief > p { font-size: 1rem; }
+
+.connected-site .about-manifesto {
+  position: relative; overflow: hidden; min-height: 465px;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  padding: 95px var(--gutter); background: #29272a;
+}
+.connected-site .about-manifesto::after {
+  content: ''; position: absolute; width: min(36vw, 440px); aspect-ratio: 1;
+  right: -110px; bottom: -130px; opacity: .09; pointer-events: none;
+  background: url('assets/design-library/asterisk-plum.png') center / contain no-repeat;
+}
+.connected-site .about-manifesto > p { font-size: .76rem; color: #bfa26a; }
+.connected-site .about-manifesto h2 { position: relative; z-index: 1; margin: 22px 0 38px; max-width: 1000px; }
+.connected-site .about-manifesto > a {
+  position: relative; z-index: 1; display: inline-flex; gap: 28px; align-items: center;
+  min-height: 48px; padding: 10px 0; border-bottom: 1px solid #8dd4d9;
+  color: #8dd4d9; font: 600 .86rem var(--sans); text-decoration: none;
+}
+.connected-site .about-manifesto > a:hover { color: #f4eee6; border-color: #f4eee6; }
+
+@media (max-width: 900px) {
+  .connected-site .about-story { grid-template-columns: 1fr; }
+  .connected-site .about-story aside { max-width: 520px; }
+}
+@media (max-width: 600px) {
+  .connected-site .about-intro { min-height: 0; padding: 88px 24px 75px; }
+  .connected-site .about-intro::after { width: 130px; top: 35px; right: 18px; opacity: .26; }
+  .connected-site .about-intro h1 { font-size: clamp(2.7rem, 11vw, 4rem); }
+  .connected-site .about-story { padding: 72px 24px; gap: 38px; }
+  .connected-site .about-story .lead { font-size: clamp(1.65rem, 6vw, 2.2rem); }
+  .connected-site .about-story aside { max-width: 420px; }
+  .connected-site .values-grid { grid-template-columns: 1fr; padding: 20px 24px 80px; }
+  .about-values-heading { padding-bottom: 18px; }
+  .connected-site .values-grid article { min-height: 220px; }
+  .connected-site .about-manifesto { min-height: 390px; padding: 80px 24px; }
+  .connected-site .about-manifesto::after { width: 270px; right: -140px; bottom: -90px; }
+}

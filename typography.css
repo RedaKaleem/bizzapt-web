@@ -1,0 +1,15 @@
+/* Shared type system. System sans fonts remain readable while webfonts load. */
+:root {
+  --display: 'Space Grotesk', 'Manrope', Arial, sans-serif;
+  --sans: 'Manrope', Arial, sans-serif;
+}
+.connected-site { font-family: var(--sans); }
+.connected-site :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--display) !important;
+  font-style: normal !important;
+}
+.connected-site :is(em, i) {
+  font-style: normal !important;
+  font-family: inherit !important;
+}
+.connected-site :is(p, input, textarea, select) { font-family: var(--sans); }

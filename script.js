@@ -1,4 +1,5 @@
-const cards = [...document.querySelectorAll('.flip-card')];
+import { resolveChallenge } from './connections-data.mjs';
+
 
 // Shared accessibility foundations for every page.
 const pageMain = document.querySelector('main');
@@ -18,7 +19,7 @@ document.querySelectorAll('button:not([type])').forEach((button) => { button.typ
 document.querySelectorAll('a[target="_blank"]').forEach((link) => { link.rel = 'noopener noreferrer'; });
 document.querySelectorAll('img').forEach((image) => {
   image.decoding ||= 'async';
-  if (!image.closest('.site-header, .site-footer, dialog') && !image.hasAttribute('loading')) image.loading = 'lazy';
+  if (!image.closest('.site-header, .site-footer, dialog, .hero') && !image.hasAttribute('loading')) image.loading = 'lazy';
 });
 document.querySelectorAll('.desktop-nav').forEach((nav, index) => {
   nav.id ||= `primary-navigation-${index + 1}`;
@@ -31,33 +32,7 @@ document.querySelectorAll('.desktop-nav').forEach((nav, index) => {
   });
 });
 
-cards.forEach((card) => {
-  const front = card.querySelector('.front');
-  const back = card.querySelector('.back');
-  front?.setAttribute('aria-hidden', 'false');
-  back?.setAttribute('aria-hidden', 'true');
-  card.addEventListener('click', () => {
-    if (card.classList.contains('is-flipped') && card.dataset.cta) {
-      document.querySelector(card.dataset.cta)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-    const willOpen = !card.classList.contains('is-flipped');
-    cards.forEach((item) => {
-      item.classList.remove('is-flipped');
-      item.setAttribute('aria-pressed', 'false');
-      item.querySelector('.front')?.setAttribute('aria-hidden', 'false');
-      item.querySelector('.back')?.setAttribute('aria-hidden', 'true');
-    });
-    if (willOpen) {
-      card.classList.add('is-flipped');
-      card.setAttribute('aria-pressed', 'true');
-      front?.setAttribute('aria-hidden', 'true');
-      back?.setAttribute('aria-hidden', 'false');
-    }
-  });
-});
-
-document.querySelectorAll('#year, .current-year').forEach((item) => { item.textContent = '2025'; });
+document.querySelectorAll('#year, .current-year').forEach((item) => { item.textContent = String(new Date().getFullYear()); });
 
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.desktop-nav');
@@ -127,12 +102,9 @@ serviceTabs.forEach((tab, index) => {
   });
 });
 if (serviceTabs.length) {
-  const requestedService = location.hash.slice(1);
-  const initialService = serviceTabs.some((tab) => tab.dataset.serviceTab === requestedService) ? requestedService : 'branding';
-  activateService(initialService);
+  activateService(resolveChallenge(location.hash));
   window.addEventListener('hashchange', () => {
-    const id = location.hash.slice(1);
-    if (serviceTabs.some((tab) => tab.dataset.serviceTab === id)) activateService(id);
+    activateService(resolveChallenge(location.hash));
   });
 }
 
@@ -210,10 +182,10 @@ if (projectForm) projectForm.addEventListener('submit', async (event) => {
     }
 
     projectForm.reset();
-    status.textContent = 'Brief received. Thanks for trusting us with your idea—we’ll be in touch within 24 hours.';
+    status.textContent = 'Message received. Thank you for sharing what you’re trying to solve. We’ll be in touch.';
     status.classList.add('is-success');
     status.hidden = false;
-    setButtonLabel('BRIEF SENT', '✓');
+    setButtonLabel('MESSAGE SENT', '✓');
   } catch (error) {
     status.textContent = error.message || 'Something went wrong. Please try again or email bizzaptenterprises@gmail.com.';
     status.classList.add('is-error');
@@ -231,13 +203,6 @@ document.querySelectorAll('.site-header .brand').forEach((brand) => {
     brand.innerHTML = '<img class="brand-lockup" src="assets/brand-logo-light-v2.png" alt="Bizzapt Enterprises — Build, Grow, Scale">';
   }
 });
-
-const legacyFooter = document.querySelector('footer:not(.site-footer)');
-if (legacyFooter) {
-  legacyFooter.className = 'site-footer';
-  legacyFooter.innerHTML = `<div class="footer-main"><a class="footer-logo" href="index.html" aria-label="Bizzapt Enterprises home"><img src="assets/brand-logo-dark.png" alt="Bizzapt Enterprises — Build, Grow, Scale"></a><div class="footer-column"><h2>Services</h2><a href="services.html#branding">Branding</a><a href="services.html#data">Data + AI</a><a href="services.html#web-design">Web Design</a><a href="services.html#web-development">Web Development</a></div><div class="footer-column"><h2>Explore</h2><a href="index.html">Home</a><a href="projects.html">Our Projects</a><a href="team.html">Team</a><a href="index.html#contact">Start a Project</a></div><div class="footer-connect"><h2>Stay connected</h2><a class="footer-email" href="mailto:bizzaptenterprises@gmail.com">bizzaptenterprises@gmail.com</a><div class="social-links" aria-label="Bizzapt social profiles"><button type="button" aria-label="Instagram profile link coming soon" title="Instagram link coming soon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></button><button type="button" aria-label="LinkedIn profile link coming soon" title="LinkedIn link coming soon"><svg viewBox="0 0 24 24"><path d="M6 9v9M6 6v.01M10 18v-5a4 4 0 0 1 8 0v5M10 9v9"/></svg></button><button type="button" aria-label="Facebook profile link coming soon" title="Facebook link coming soon"><svg viewBox="0 0 24 24"><path d="M14 21v-8h3l.5-4H14V7c0-1.2.4-2 2-2h2V2.3c-.7-.2-1.7-.3-3-.3-3 0-5 1.8-5 5v2H7v4h3v8"/></svg></button></div><small>Social links will be connected when supplied.</small></div></div><div class="footer-bottom"><p>India • Saudi Arabia • UAE</p><p>© 2025 Bizzapt Enterprises</p><a href="#top">BACK TO TOP ↑</a></div>`;
-}
-document.querySelectorAll('.site-footer a[href="services.html#data"]').forEach((link) => { link.textContent = 'Data Analytics'; });
 
 const footerSocialProfiles = [
   { href: 'https://www.instagram.com/bizzaptenterprises/', label: 'Bizzapt Enterprises on Instagram' },
@@ -272,6 +237,7 @@ document.querySelectorAll('[data-project-slideshow]').forEach((card) => {
     index = next % slides.length;
     slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
   };
+  const nextSlide = () => { stop(); showSlide(index + 1); };
   const start = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || timer) return;
     card.classList.add('is-previewing');
@@ -286,7 +252,13 @@ document.querySelectorAll('[data-project-slideshow]').forEach((card) => {
   frame.addEventListener('mouseleave', stop);
   frame.addEventListener('focus', start);
   frame.addEventListener('blur', stop);
-  frame.addEventListener('click', () => { if (timer) stop(); else start(); });
+  frame.addEventListener('click', nextSlide);
+  frame.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    nextSlide();
+  });
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (event) => { if (event.matches) stop(); });
 });
 
 function mountLivePreview(card) {
@@ -303,30 +275,39 @@ function mountLivePreview(card) {
   iframe.addEventListener('load', () => {
     card.classList.remove('preview-loading');
     card.classList.add('preview-ready');
+    const hint = visual.querySelector('i');
+    if (hint) hint.textContent = 'OPEN PROJECT ↗';
   }, { once: true });
   card.classList.add('preview-loading');
   iframe.src = card.dataset.livePreview;
-  visual.prepend(iframe);
+  const screen = document.createElement('div');
+  screen.className = 'project-preview-window';
+  screen.append(iframe);
+  visual.prepend(screen);
   card.dataset.previewMounted = 'true';
   window.setTimeout(() => {
-    if (card.dataset.previewMounted === 'true') card.classList.add('preview-ready');
-  }, 1800);
-  const sizePreview = () => visual.style.setProperty('--preview-scale', Math.max(.18, visual.clientWidth / 1200).toFixed(4));
+    if (!card.classList.contains('preview-ready')) {
+      card.classList.remove('preview-loading');
+      const hint = visual.querySelector('i');
+      if (hint) hint.textContent = 'PREVIEW TAKING LONGER · OPEN PROJECT ↗';
+    }
+  }, 10000);
+  const sizePreview = () => visual.style.setProperty('--preview-scale', Math.max(.18, screen.clientWidth / 1200).toFixed(4));
   sizePreview();
   if ('ResizeObserver' in window) new ResizeObserver(sizePreview).observe(visual);
 }
 
 if (livePreviewCards.length) {
-  const previewObserver = 'IntersectionObserver' in window
-    ? new IntersectionObserver((entries, observer) => entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      mountLivePreview(entry.target);
-      observer.unobserve(entry.target);
-    }), { rootMargin: '700px 0px' })
-    : null;
+  if ('IntersectionObserver' in window) {
+    const previewObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { mountLivePreview(entry.target); previewObserver.unobserve(entry.target); }
+      });
+    }, { rootMargin: '300px 0px' });
+    livePreviewCards.forEach(card => previewObserver.observe(card));
+  }
+
   livePreviewCards.forEach((card) => {
-    if (previewObserver) previewObserver.observe(card);
-    else mountLivePreview(card);
     card.addEventListener('mouseenter', () => {
       mountLivePreview(card);
       card.classList.add('is-previewing');
@@ -393,7 +374,7 @@ const teamProfiles = {
     name: 'Reda Kaleem',
     handle: '@RedaKaleem',
     role: 'Co-Founder & Lead Designer',
-    image: 'assets/team/reda-kaleem-profile.png',
+    image: 'assets/team/reda-kaleem-portrait.png',
     imagePosition: '50% 28%',
     github: 'https://github.com/RedaKaleem',
     portfolio: 'https://new-port-tau-kohl.vercel.app/',
