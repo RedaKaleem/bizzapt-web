@@ -543,7 +543,6 @@ body{padding-top:66px}
 .data-world .world-copy li:nth-child(3n){border-right:0}
 .data-world .world-copy li:nth-last-child(-n+3){border-bottom:0}
 .aura-console{position:relative;z-index:2;width:min(100%,980px);height:570px;min-height:0;padding:30px;border:1px solid rgba(141,212,217,.4);overflow:hidden;background:radial-gradient(circle at 38% 48%,rgba(0,174,214,.13),transparent 38%),linear-gradient(rgba(141,212,217,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(141,212,217,.08) 1px,transparent 1px),#0c1417;background-size:auto,32px 32px,32px 32px,auto;box-shadow:0 30px 75px rgba(0,0,0,.32)}
-.aura-console:before{content:"";position:absolute;width:55%;aspect-ratio:1;left:2%;top:8%;background:url('assets/design-library/data-network.png') center/contain no-repeat;opacity:.88;animation:dataPulse 6s ease-in-out infinite alternate}
 .aura-console:after{content:"";position:absolute;width:36%;aspect-ratio:1.12;right:4%;top:15%;background:url('assets/design-library/data-radar.png') center/contain no-repeat,rgba(244,238,230,.94);border:1px solid rgba(141,212,217,.35);box-shadow:10px 13px 0 rgba(96,67,91,.3);transform:rotate(2deg)}
 .aura-console .console-head{position:relative;z-index:3;color:#8dd4d9}
 .aura-console .aura-core{position:absolute;z-index:3;width:120px;height:120px;left:22%;top:40%;margin:0;font-size:4rem;background:rgba(12,20,23,.72);backdrop-filter:blur(8px);box-shadow:0 0 40px rgba(141,212,217,.2)}
