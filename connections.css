@@ -190,7 +190,9 @@
 .connected-home .form-heading .section-tag { color: #c5b2b2; }
 .connected-home .form-note { color: #c5b2b2; line-height: 1.7; font-size: .7rem; }
 .connected-home .form-note a { color: var(--cyan); overflow-wrap: anywhere; }
-.connected-site .footer-main { grid-template-columns: minmax(0,1.25fr) .65fr .65fr minmax(0,1fr); gap: 40px; }
+.connected-site .footer-main { grid-template-columns: minmax(0,1.4fr) minmax(180px,.8fr) minmax(220px,1fr); gap: 40px; }
+.connected-site .footer-brand-block { align-self: start; }
+.connected-site .footer-brand-block > p { max-width: 28ch; margin: 24px 0 0; color: rgba(244,238,230,.74); font-size: .9rem; line-height: 1.5; }
 
 /* The existing changing worlds now assemble a solution around an outcome. */
 .solutions-page .solution-intro { padding: 65px var(--gutter) 65px; }
