@@ -1,5 +1,38 @@
 /* The founder and team now live within About's existing editorial system. */
 .connected-site.about-page .about-intro h1 { font-size: clamp(3.1rem,4.8vw,5.3rem); max-width: 1300px; }
+/* Large, quiet words echo the home page without competing with the story. */
+.about-page :is(.about-intro, .about-promise, .about-thinking) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.about-page :is(.about-intro, .about-promise, .about-thinking) > :not(.about-background-word) {
+  position: relative;
+  z-index: 1;
+}
+.about-page .about-background-word {
+  position: absolute;
+  z-index: 0;
+  right: var(--gutter);
+  bottom: clamp(20px, 3vw, 48px);
+  width: max-content;
+  color: #60435b;
+  font: 600 clamp(6rem, 16vw, 17rem)/1 var(--display);
+  letter-spacing: -.075em;
+  opacity: .065;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.about-page .about-promise .about-background-word { left: var(--gutter); right: auto; opacity: .075; }
+.about-page .about-thinking .about-background-word { opacity: .075; }
+/* Keep the existing founder signature inside the dark panel, too. */
+.about-page .founder-wordmark {
+  right: var(--gutter);
+  bottom: 28px;
+  font-size: clamp(6rem, 14vw, 15rem);
+  line-height: 1;
+}
 .connected-site.about-page .founder-note { align-items: start; }
 .connected-site.about-page .founder-note blockquote > p + p { margin-top: 20px; }
 .connected-site.about-page .about-drives { padding-top: clamp(78px,8vw,120px); background: #f4eee6; }
@@ -35,4 +68,4 @@
 .about-page .about-manifesto-actions a:hover { color: #f4eee6; border-color: #f4eee6; }
 @media (max-width: 1100px) { .connected-site.about-page .values-grid:not(.about-drives) { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 760px) { .connected-site.about-page .founder-note blockquote > p { font-size: 1rem; } .about-page .about-thinking-grid { grid-template-columns: 1fr; } .about-page .about-thinking-grid article { min-height: 0; } }
-@media (max-width: 600px) { .connected-site.about-page .values-grid:not(.about-drives) { grid-template-columns: 1fr; } .about-page .about-manifesto-actions { gap: 10px 24px; } }
+@media (max-width: 600px) { .about-page .about-background-word { font-size: clamp(3.5rem, 17vw, 6.5rem); bottom: 18px; opacity: .055; } .about-page .founder-wordmark { font-size: 16vw; bottom: 18px; } .connected-site.about-page .values-grid:not(.about-drives) { grid-template-columns: 1fr; } .about-page .about-manifesto-actions { gap: 10px 24px; } }
