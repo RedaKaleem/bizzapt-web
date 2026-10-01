@@ -2,39 +2,42 @@
   .has-custom-cursor, .has-custom-cursor * { cursor: none !important; }
   .has-custom-cursor :is(input, textarea, [contenteditable="true"]) { cursor: text !important; }
 
-  .cursor-dot, .cursor-halo {
+  .cursor-dot {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 2147483647;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
+    background: currentColor;
+    color: #60435b;
     pointer-events: none;
     opacity: 0;
-    will-change: transform;
-    transition: opacity 150ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    transform: translate3d(-30px, -30px, 0);
+    transition: opacity 140ms ease, color 180ms ease;
   }
 
-  .cursor-dot {
-    z-index: 2147483647;
-    width: 9px;
-    height: 9px;
-    background: #60435b;
-    box-shadow: 0 0 0 1px #f4eee6b3, 0 0 10px 2px #9b5fd1a6;
+  .cursor-dot::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: .42;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 220ms cubic-bezier(.2, .6, .3, 1), opacity 220ms ease;
   }
 
-  .cursor-halo {
-    z-index: 2147483646;
-    width: 27px;
-    height: 27px;
-    background: radial-gradient(circle, #9b5fd180 0%, #9b5fd133 42%, transparent 72%);
-    box-shadow: 0 0 18px 3px #9b5fd155;
-  }
-
-  .cursor-dot.is-visible, .cursor-halo.is-visible { opacity: 1; }
-  .cursor-dot.is-gold { background: #e2bc72; box-shadow: 0 0 0 1px #211d1b99, 0 0 11px 3px #edc66db3; }
-  .cursor-halo.is-gold { background: radial-gradient(circle, #edc66d99 0%, #edc66d44 42%, transparent 72%); box-shadow: 0 0 20px 4px #edc66d66; }
-  .cursor-dot.is-over-text, .cursor-halo.is-over-text { opacity: 0; }
+  .cursor-dot.is-visible { opacity: 1; }
+  .cursor-dot.is-gold { color: #d6b675; }
+  .cursor-dot.is-interactive::before { opacity: .68; transform: translate(-50%, -50%) scale(1.35); }
+  .cursor-dot.is-over-text { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-dot, .cursor-halo { transition: none; }
+  .cursor-dot, .cursor-dot::before { transition: none; }
 }
