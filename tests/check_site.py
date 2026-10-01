@@ -53,9 +53,9 @@ assert 'Not sure yet' in (ROOT / 'index.html').read_text()
 form = next(attrs for tag, attrs in home if tag == 'form')
 assert form['action'] == 'https://formspree.io/f/xzebpoby'
 assert form['method'].upper() == 'POST'
-panels = [a for _, a in pages['services.html'].elements if 'data-service-world' in a]
-assert [a['data-service-world'] for a in panels] == ['launch', 'grow', 'optimize', 'scale']
-assert ['hidden' in a for a in panels] == [False, True, True, True]
+services = pages['services.html'].elements
+assert not any('data-service-world' in a or 'data-service-tab' in a for _, a in services)
+assert len([a for _, a in services if 'service-problem-card' in a.get('class', '').split()]) == 7
 for old in ('Choose a discipline', 'Service you need', 'Pick a layer'):
     assert not any(old in (ROOT / name).read_text() for name in pages), old
 print(f'Passed: {len(pages)} routes, local files/anchors, IDs, ARIA references, network, tabs and form contract.')

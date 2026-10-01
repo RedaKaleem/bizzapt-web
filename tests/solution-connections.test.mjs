@@ -29,7 +29,7 @@ test('selecting each puzzle piece updates the pressed state, related pieces and 
   };
   const source = readFileSync(new URL('../solution-connections.mjs', import.meta.url), 'utf8').replace('export const', 'const');
   vm.runInNewContext(source, { document: { querySelector: () => section, createElement: () => ({}) } });
-  assert.equal(label.textContent, 'Websites');
+  assert.equal(label.textContent, 'Website');
   for (const button of buttons) {
     button.click();
     const entry = solutionConnections[button.dataset.piece];

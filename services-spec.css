@@ -1,0 +1,40 @@
+/* Problem-first service page using the existing editorial palette. */
+.connected-site.solutions-page .solution-intro h1 { font-size: clamp(3rem,4.5vw,5.1rem); max-width: 1120px; }
+.connected-site.solutions-page .service-problems { background: #f4eee6; }
+.solutions-page .service-problems .connected-heading { margin-bottom: 48px; }
+.solutions-page .service-problem-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.solutions-page .service-problem-card { min-width: 0; display: flex; flex-direction: column; padding: clamp(26px,3vw,42px); min-height: 360px; border-top: 2px solid #60435b; background: #e8e1e4; }
+.solutions-page .service-problem-card:nth-child(3n+2) { border-color: #5e9ca2; background: #e0e9e8; }
+.solutions-page .service-problem-card:nth-child(3n) { border-color: #bfa26a; background: #ece5d8; }
+.solutions-page .service-problem-card > span { color: #60435b; font: 500 .72rem var(--mono); }
+.solutions-page .service-problem-card h3 { max-width: 24ch; margin: 22px 0 12px; font: 600 clamp(1.4rem,2vw,2rem)/1.2 var(--sans); letter-spacing: -.035em; }
+.solutions-page .service-problem-card > p { max-width: 52ch; margin: 0 0 32px; line-height: 1.65; }
+.solutions-page .service-problem-card dl { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin: auto 0 0; padding-top: 19px; border-top: 1px solid #60435b36; }
+.solutions-page .service-problem-card dt { margin-bottom: 10px; color: #60435b; font: 600 .68rem/1.5 var(--mono); text-transform: uppercase; }
+.solutions-page .service-problem-card dd { margin: 0; font-size: .88rem; line-height: 1.65; }
+.solutions-page .service-problem-more { margin: 42px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 1.1rem; }
+.solutions-page .service-problem-more a { color: #60435b; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.solutions-page .legacy-anchor { display: block; height: 0; scroll-margin-top: 90px; }
+.solutions-page .service-instruments { background: #e7e5e1; }
+.solutions-page .service-instruments h2,.solutions-page .service-line h2 { max-width: 18ch; margin: 23px 0 50px; font: 600 clamp(2.6rem,5vw,5.5rem)/1.04 var(--display); letter-spacing: -.055em; }
+.solutions-page .service-instruments ul { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.solutions-page .service-instruments li { padding: 14px 19px; border: 1px solid #60435b66; font: 500 .95rem var(--sans); }
+.solutions-page .service-instruments > p:last-child { max-width: 54ch; margin: 30px 0 0; color: #51494d; line-height: 1.7; }
+.solutions-page .service-line { background: #e5dce1; }
+.solutions-page .service-line-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.solutions-page .service-line-grid article { min-height: 220px; padding: 28px; border-top: 2px solid #60435b; background: #f4eee6b8; }
+.solutions-page .service-line-grid h3 { margin: 0 0 24px; font: 600 clamp(1.3rem,1.8vw,1.8rem)/1.24 var(--sans); letter-spacing: -.03em; }
+.solutions-page .service-line-grid p { margin: 0; line-height: 1.7; }
+.solutions-page .solution-closing h2 em { color: #60435b; }
+@media (max-width: 800px) {
+ .solutions-page .service-problem-card dl { grid-template-columns: 1fr; gap: 14px; }
+ .solutions-page .service-line-grid { grid-template-columns: 1fr; }
+ .solutions-page .service-line-grid article { min-height: 0; }
+}
+@media (max-width: 650px) {
+ .solutions-page .service-problem-grid { grid-template-columns: 1fr; }
+ .solutions-page .service-problem-card { min-height: 0; }
+ .solutions-page .service-problem-card dl { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .solutions-page .service-instruments li { padding: 10px 13px; font-size: .83rem; }
+}
+@media (max-width: 420px) { .solutions-page .service-problem-card dl { grid-template-columns: 1fr; } }
