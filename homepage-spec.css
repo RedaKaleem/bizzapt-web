@@ -19,11 +19,11 @@
 .connected-home .home-background-word {
   position: absolute;
   z-index: 0;
-  bottom: -.18em;
-  right: -.035em;
+  bottom: clamp(20px, 3vw, 48px);
+  right: var(--gutter);
   width: max-content;
   color: var(--plum);
-  font: 600 clamp(8rem, 21vw, 24rem)/1 var(--display);
+  font: 600 clamp(6rem, 17vw, 18rem)/1 var(--display);
   letter-spacing: -.075em;
   opacity: .075;
   white-space: nowrap;
@@ -32,8 +32,7 @@
 }
 .connected-home .home-why .home-background-word {
   right: auto;
-  left: -.055em;
-  bottom: -.12em;
+  left: var(--gutter);
   color: #493345;
 }
 .connected-home .home-promise .home-background-word { opacity: .08; }
@@ -75,7 +74,7 @@
  .connected-home .home-work-cards a { min-height: 180px; }
 }
 @media (max-width: 700px) {
- .connected-home .home-background-word { font-size: clamp(7.5rem, 27vw, 13rem); bottom: -.12em; opacity: .055; }
+ .connected-home .home-background-word { font-size: clamp(3.5rem, 18vw, 8rem); bottom: 18px; opacity: .055; }
  .connected-home .home-card-grid, .connected-home .home-card-grid-four, .connected-home .home-problems-grid, .connected-home .home-promise-thinking dl { grid-template-columns: 1fr; }
  .connected-home .home-card-grid article { min-height: 190px; }
  .connected-home .home-work-cards { grid-template-columns: repeat(3,minmax(0,1fr)); }
