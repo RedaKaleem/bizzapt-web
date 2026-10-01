@@ -6,6 +6,37 @@
 .connected-home .home-problem { background: #f4eee6; }
 .connected-home .home-why { background: #e7e5e1; }
 .connected-home .home-promise { background: #e5dce1; }
+/* Editorial words fill the quiet edges of the longer homepage sections. */
+.connected-home :is(.home-problem, .home-why, .home-promise) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.connected-home :is(.home-problem, .home-why, .home-promise) > :not(.home-background-word) {
+  position: relative;
+  z-index: 1;
+}
+.connected-home .home-background-word {
+  position: absolute;
+  z-index: 0;
+  bottom: -.18em;
+  right: -.035em;
+  width: max-content;
+  color: var(--plum);
+  font: 600 clamp(8rem, 21vw, 24rem)/1 var(--display);
+  letter-spacing: -.075em;
+  opacity: .075;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.connected-home .home-why .home-background-word {
+  right: auto;
+  left: -.055em;
+  bottom: -.12em;
+  color: #493345;
+}
+.connected-home .home-promise .home-background-word { opacity: .08; }
 .connected-home .home-card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: clamp(45px,6vw,76px); }
 .connected-home .home-card-grid-four { grid-template-columns: repeat(4,minmax(0,1fr)); }
 .connected-home .home-card-grid article { min-width: 0; min-height: 250px; display: flex; flex-direction: column; border-top: 2px solid #60435b; padding: clamp(24px,2.8vw,38px); background: rgba(96,67,91,.07); }
@@ -44,6 +75,7 @@
  .connected-home .home-work-cards a { min-height: 180px; }
 }
 @media (max-width: 700px) {
+ .connected-home .home-background-word { font-size: clamp(7.5rem, 27vw, 13rem); bottom: -.12em; opacity: .055; }
  .connected-home .home-card-grid, .connected-home .home-card-grid-four, .connected-home .home-problems-grid, .connected-home .home-promise-thinking dl { grid-template-columns: 1fr; }
  .connected-home .home-card-grid article { min-height: 190px; }
  .connected-home .home-work-cards { grid-template-columns: repeat(3,minmax(0,1fr)); }
