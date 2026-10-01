@@ -200,14 +200,14 @@ if (projectForm) projectForm.addEventListener('submit', async (event) => {
 document.querySelectorAll('.site-header .brand').forEach((brand) => {
   if (!brand.querySelector('.brand-lockup')) {
     brand.setAttribute('aria-label', 'Bizzapt home');
-    brand.innerHTML = '<img class="brand-lockup" src="assets/brand-logo-light-v2.png" alt="Bizzapt Enterprises — Build, Grow, Scale">';
+    brand.innerHTML = '<img class="brand-lockup" src="assets/brand-logo-light-v2.png" alt="Bizzapt">';
   }
 });
 
 const footerSocialProfiles = [
-  { href: 'https://www.instagram.com/bizzaptenterprises/', label: 'Bizzapt Enterprises on Instagram' },
-  { href: 'https://www.linkedin.com/in/bizzapt-enterprises', label: 'Bizzapt Enterprises on LinkedIn' },
-  { href: 'https://www.facebook.com/profile.php?id=61592254697537', label: 'Bizzapt Enterprises on Facebook' }
+  { href: 'https://www.instagram.com/bizzaptenterprises/', label: 'Bizzapt on Instagram' },
+  { href: 'https://www.linkedin.com/in/bizzapt-enterprises', label: 'Bizzapt on LinkedIn' },
+  { href: 'https://www.facebook.com/profile.php?id=61592254697537', label: 'Bizzapt on Facebook' }
 ];
 document.querySelectorAll('.social-links').forEach((socialGroup) => {
   socialGroup.querySelectorAll('button').forEach((button, index) => {
@@ -340,106 +340,6 @@ resourceLinks.forEach((link) => {
   link.innerHTML = `<span class="resource-icon">${resourceIcons[type]}</span><span class="resource-kind">${type === 'github' ? 'GITHUB' : type.toUpperCase()}</span><span class="resource-action">${actionLabel}</span>`;
 });
 
-const teamProfiles = {
-  ahmed: {
-    name: 'Ahmed Kamraan Ali',
-    handle: 'Team Member · Computer Science',
-    role: 'Computer Science Team Member',
-    image: 'assets/team/ahmed-kamraan-placeholder.svg',
-    github: 'https://www.linkedin.com/in/ahmed-kamraan-ali-a7b137203',
-    profileLabel: 'VIEW LINKEDIN ↗',
-    portfolio: '',
-    repos: '—',
-    location: 'India',
-    focus: 'Computer Science',
-    bio: 'Computer-science learner with a practical builder mindset.',
-    about: 'Ahmed contributes a computer-science perspective to Bizzapt’s growing team, supporting the thinking and technical curiosity behind useful digital experiences.',
-    skills: ['Computer science', 'Technology', 'Problem solving', 'Team collaboration']
-  },
-  hajra: {
-    name: 'Hajra Iqbal',
-    handle: 'Founder · Bizzapt Enterprises',
-    role: 'Founder & Visionary',
-    image: 'assets/team/hajra-iqbal.jpg',
-    github: '',
-    portfolio: '',
-    repos: '—',
-    location: 'India',
-    focus: 'Vision + Leadership',
-    bio: 'The founder who started it all with a clear vision.',
-    about: 'Hajra founded Bizzapt around a simple but ambitious belief: strategy, creativity, and technology should work together. Her vision continues to guide how the team builds partnerships, makes decisions, and turns ideas into meaningful growth.',
-    skills: ['Business vision', 'Strategic direction', 'Leadership', 'Partnership building', 'Growth thinking']
-  },
-  reda: {
-    name: 'Reda Kaleem',
-    handle: '@RedaKaleem',
-    role: 'Co-Founder & Lead Designer',
-    image: 'assets/team/reda-kaleem-portrait.png',
-    imagePosition: '50% 28%',
-    github: 'https://github.com/RedaKaleem',
-    portfolio: 'https://new-port-tau-kohl.vercel.app/',
-    repos: '25',
-    location: 'India',
-    focus: 'Design + Technology',
-    bio: 'Community builder. Tech enthusiast. Creative systems thinker.',
-    about: 'Reda guides Bizzapt’s identity, product direction, visual systems, and community relationships—connecting ambitious ideas with design and technology that people can understand and use.',
-    skills: ['Brand direction', 'Product strategy', 'Web experiences', 'AI & data projects', 'Community building']
-  },
-  rayeesa: {
-    name: 'Rayeesa Mahmood',
-    handle: '@RayeesaMahmood',
-    role: 'Founder & Website Creator',
-    image: 'https://avatars.githubusercontent.com/u/151394585?v=4',
-    github: 'https://github.com/RayeesaMahmood',
-    portfolio: 'https://rayeesa-portfolio-xhyf.vercel.app/',
-    repos: '24',
-    location: 'Hyderabad',
-    focus: 'AI + Web Development',
-    bio: 'Computer-science graduate building useful AI and web experiences.',
-    about: 'Rayeesa turns strategy into usable digital products, working across artificial intelligence, front-end development, interface thinking, and implementation for Bizzapt’s web experiences.',
-    skills: ['Artificial intelligence', 'Web development', 'Interface design', 'Rapid prototyping', 'Technical research']
-  }
-};
-
-const profileDialog = document.querySelector('#profile-dialog');
-const profileButtons = [...document.querySelectorAll('[data-profile]')];
-if (profileDialog && profileButtons.length) {
-  const setText = (id, value) => { const node = profileDialog.querySelector(`#${id}`); if (node) node.textContent = value; };
-  profileButtons.forEach((button) => button.addEventListener('click', () => {
-    const profile = teamProfiles[button.dataset.profile];
-    if (!profile) return;
-    const image = profileDialog.querySelector('#profile-dialog-image');
-    image.src = profile.image;
-    image.alt = profile.name;
-    image.style.objectPosition = profile.imagePosition || '50% 50%';
-    setText('profile-dialog-name', profile.name);
-    setText('profile-dialog-handle', profile.handle);
-    setText('profile-dialog-role', profile.role);
-    setText('profile-dialog-repos', profile.repos);
-    setText('profile-dialog-location', profile.location);
-    setText('profile-dialog-focus', profile.focus);
-    setText('profile-dialog-bio', profile.bio);
-    setText('profile-dialog-about', profile.about);
-    const github = profileDialog.querySelector('#profile-dialog-github');
-    const portfolio = profileDialog.querySelector('#profile-dialog-portfolio');
-    github.hidden = !profile.github;
-    github.textContent = profile.profileLabel || 'VIEW GITHUB ↗';
-    portfolio.hidden = !profile.portfolio;
-    if (profile.github) github.href = profile.github;
-    if (profile.portfolio) portfolio.href = profile.portfolio;
-    profileDialog.querySelector('#profile-dialog-skills').innerHTML = profile.skills.map((skill) => `<li>${skill}</li>`).join('');
-    profileDialog.showModal();
-    document.body.classList.add('profile-modal-open');
-  }));
-  const closeProfile = () => {
-    profileDialog.close();
-    document.body.classList.remove('profile-modal-open');
-  };
-  profileDialog.querySelector('.profile-close').addEventListener('click', closeProfile);
-  profileDialog.addEventListener('click', (event) => { if (event.target === profileDialog) closeProfile(); });
-  profileDialog.addEventListener('close', () => document.body.classList.remove('profile-modal-open'));
-}
-
 document.querySelectorAll('.workspace-files > button').forEach((button) => {
   button.type = 'button';
   button.addEventListener('click', () => {
@@ -472,20 +372,10 @@ document.querySelectorAll('.social-links button[title*="coming soon"]').forEach(
   button.setAttribute('aria-disabled', 'true');
 });
 
-const whoDialog = document.querySelector('#who-dialog');
-const whoTrigger = document.querySelector('.who-trigger');
-if (whoDialog && whoTrigger) {
-  const closeWhoDialog = () => whoDialog.close();
-  whoTrigger.addEventListener('click', () => whoDialog.showModal());
-  whoDialog.querySelector('.who-dialog-close')?.addEventListener('click', closeWhoDialog);
-  whoDialog.addEventListener('click', (event) => { if (event.target === whoDialog) closeWhoDialog(); });
-  whoDialog.querySelector('.who-dialog-cta')?.addEventListener('click', closeWhoDialog);
-}
-
 document.querySelectorAll('[data-copy-email]').forEach((button) => {
   button.addEventListener('click', async () => {
     const email = button.dataset.copyEmail;
-    const status = button.closest('.who-email-block')?.querySelector('.copy-status');
+    const status = button.closest('.form-note, .who-email-block')?.querySelector('.copy-status');
     try {
       await navigator.clipboard.writeText(email);
     } catch {
@@ -501,6 +391,6 @@ document.querySelectorAll('[data-copy-email]').forEach((button) => {
     }
     button.textContent = 'COPIED ✓';
     if (status) status.textContent = 'Email copied to your clipboard.';
-    window.setTimeout(() => { button.textContent = 'COPY'; }, 1800);
+    window.setTimeout(() => { button.textContent = 'Copy email'; }, 1800);
   });
 });

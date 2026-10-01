@@ -1,0 +1,38 @@
+/* The founder and team now live within About's existing editorial system. */
+.connected-site.about-page .about-intro h1 { font-size: clamp(3.1rem,5.3vw,5.7rem); max-width: 1300px; }
+.connected-site.about-page .founder-note { align-items: start; }
+.connected-site.about-page .founder-note blockquote > p + p { margin-top: 20px; }
+.connected-site.about-page .about-drives { padding-top: clamp(78px,8vw,120px); background: #f4eee6; }
+.connected-site.about-page .about-promise { background: #ded4d8; }
+.about-page .about-promise h2,.about-page .about-thinking h2 { max-width: 19ch; margin: 25px 0 25px; font: 600 clamp(2.8rem,5vw,5.4rem)/1.04 var(--display); letter-spacing: -.055em; }
+.about-page .about-promise h2 em,.about-page .about-thinking h2 em { color: #60435b; }
+.about-page .about-promise > p:last-child,.about-page .about-thinking > p:not(.section-tag) { max-width: 60ch; margin: 0; font-size: 1.1rem; line-height: 1.75; }
+.connected-site.about-page .values-grid:not(.about-drives) { grid-template-columns: repeat(4,minmax(0,1fr)); padding-top: clamp(64px,7vw,100px); }
+.connected-site.about-page .values-grid:not(.about-drives) article { min-height: 285px; }
+.connected-site.about-page .values-grid:not(.about-drives) article:nth-of-type(4) { background: #e5dce1; border-top-color: #60435b; }
+.connected-site.about-page .values-grid:not(.about-drives) article h2 { font-size: clamp(1.7rem,2.5vw,2.5rem); }
+.connected-site.about-page .about-thinking { background: #f4eee6; }
+.about-page .about-thinking-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: 55px; }
+.about-page .about-thinking-grid article { min-height: 245px; padding: clamp(24px,3vw,38px); border-top: 2px solid #60435b; background: #e5dce1; }
+.about-page .about-thinking-grid article:nth-child(2) { border-color: #5e9ca2; background: #dfe8e7; }
+.about-page .about-thinking-grid article:nth-child(3) { border-color: #bfa26a; background: #e9e1d2; }
+.about-page .about-thinking-grid span { color: #60435b; font: 500 .72rem var(--mono); }
+.about-page .about-thinking-grid h3 { margin: 40px 0 13px; font: 600 clamp(1.9rem,2.7vw,2.8rem)/1.1 var(--sans); letter-spacing: -.04em; }
+.about-page .about-thinking-grid p { margin: 0; font-size: .98rem; line-height: 1.7; }
+.connected-site.about-page .team-directory { scroll-margin-top: 80px; }
+.connected-site.about-page .team-directory .profile-portrait { cursor: default; }
+.connected-site.about-page .team-directory .profile-portrait:hover { transform: none; border-color: #60435b40; }
+.connected-site.about-page .team-directory .profile-portrait img { object-position: center 30%; filter: saturate(.86); }
+.connected-site.about-page .team-directory .profile-portrait:hover img { transform: none; filter: saturate(.86); }
+.connected-site.about-page .team-directory .initials-portrait { display: grid; place-items: center; }
+.connected-site.about-page .team-directory .member-initials { position: static; transform: none; opacity: 1; padding: 0; border: 0; background: transparent; color: #60435b; font: 600 clamp(4rem,7vw,7rem)/1 var(--display); }
+.about-page .profile-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: auto; }
+.connected-site.about-page .profile-summary .profile-links a { margin: 0; }
+.about-page .team-standard { grid-column: 1 / -1; margin: 8px 0 0; padding-top: 36px; border-top: 1px solid #60435b40; font: 600 clamp(1.6rem,3vw,3rem)/1.25 var(--sans); letter-spacing: -.04em; }
+.about-page .team-standard em { color: #60435b; }
+.about-page .about-manifesto-actions { display: flex; flex-wrap: wrap; gap: 28px; position: relative; z-index: 1; }
+.about-page .about-manifesto-actions a { display: inline-flex; gap: 20px; align-items: center; min-height: 48px; padding: 10px 0; border-bottom: 1px solid #8dd4d9; color: #8dd4d9; font: 600 .86rem var(--sans); text-decoration: none; }
+.about-page .about-manifesto-actions a:hover { color: #f4eee6; border-color: #f4eee6; }
+@media (max-width: 1100px) { .connected-site.about-page .values-grid:not(.about-drives) { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 760px) { .connected-site.about-page .founder-note blockquote > p { font-size: 1rem; } .about-page .about-thinking-grid { grid-template-columns: 1fr; } .about-page .about-thinking-grid article { min-height: 0; } }
+@media (max-width: 600px) { .connected-site.about-page .values-grid:not(.about-drives) { grid-template-columns: 1fr; } .about-page .about-manifesto-actions { gap: 10px 24px; } }
