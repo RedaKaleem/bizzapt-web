@@ -1,0 +1,228 @@
+/* People, purpose and profiles share the site's editorial rhythm. */
+.connected-site.team-page .team-intro {
+  position: relative; isolation: isolate; overflow: hidden;
+  width: 100%; max-width: none; min-height: min(690px, calc(100svh - 66px));
+  margin: 0; padding: clamp(94px, 9vw, 145px) var(--gutter) clamp(110px, 9vw, 150px);
+  background: #f1ece5; border-bottom: 1px solid #60435b35;
+}
+.team-page .team-intro-wordmark,
+.team-page .founder-wordmark,
+.team-page .team-note-wordmark {
+  position: absolute; z-index: 0; display: block; width: max-content;
+  font: 700 clamp(10rem, 22vw, 27rem)/.8 var(--display);
+  letter-spacing: -.09em; pointer-events: none; user-select: none;
+}
+.team-page .team-intro-wordmark {
+  right: -.05em; bottom: -.12em; color: #60435b; opacity: .055;
+}
+.team-page :is(.team-intro, .founder-note, .team-note) > :not(.team-intro-wordmark, .founder-wordmark, .team-note-wordmark) {
+  position: relative; z-index: 1;
+}
+.team-page .team-intro .section-tag { margin: 0 0 30px; color: #60435b; }
+.team-page .team-intro h1 {
+  max-width: 1120px; margin: 0; color: #211d1b;
+  font-size: clamp(3.6rem, 5.6vw, 6.2rem); font-weight: 600;
+  line-height: 1.04; letter-spacing: -.06em;
+}
+.team-page .team-intro h1 em { color: #60435b; }
+.team-page .team-intro > p:last-child {
+  max-width: 56ch; margin: 36px 0 0; color: #51494d;
+  font-size: 1.08rem; line-height: 1.75;
+}
+
+.connected-site.team-page .founder-note {
+  width: 100%; max-width: none; margin: 0; border: 0;
+  padding: clamp(88px, 8vw, 128px) var(--gutter);
+  grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+  gap: clamp(48px, 7vw, 125px); align-items: end;
+  background: #252329; color: #f4eee6;
+}
+.team-page .founder-note::after { display: none; }
+.team-page .founder-wordmark {
+  right: -.035em; bottom: -.18em; color: #f4eee6; opacity: .045;
+}
+.connected-site.team-page .founder-note .section-tag { color: #8dd4d9; }
+.team-page .founder-note-heading h2 {
+  max-width: 820px; margin: 24px 0 0;
+  color: #f4eee6; font-size: clamp(3rem, 5.1vw, 5.6rem);
+  font-weight: 600; line-height: 1.04; letter-spacing: -.055em;
+}
+.connected-site.team-page .founder-note-heading h2 em { color: #d1adc6; }
+.connected-site.team-page .founder-note blockquote {
+  padding: 3px 0 3px 28px; border-left: 1px solid #8dd4d9;
+}
+.connected-site.team-page .founder-note blockquote > p {
+  max-width: 58ch; margin: 0; color: #e3dbe0;
+  font-size: clamp(1.04rem, 1.35vw, 1.24rem); line-height: 1.8;
+}
+.team-page .founder-note-signature { margin-top: 32px; color: #f4eee6; }
+.team-page .founder-note-signature strong { font-size: 1.04rem; }
+.connected-site.team-page .founder-note-signature span { color: #8dd4d9; font-size: .66rem; }
+
+.connected-site.team-page .team-directory {
+  counter-reset: member; position: relative;
+  width: 100%; max-width: none; margin: 0;
+  padding: clamp(90px, 8vw, 130px) var(--gutter) clamp(100px, 9vw, 145px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(54px, 5vw, 86px) clamp(30px, 4vw, 68px);
+  background: #f4eee6;
+}
+.team-page .team-directory-head {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, .6fr);
+  align-items: end; gap: 18px 42px; grid-column: 1 / -1;
+  margin-bottom: 4px; padding-bottom: clamp(30px, 4vw, 56px);
+  border-bottom: 1px solid #60435b45;
+}
+.team-page .team-directory-head .section-tag { grid-column: 1 / -1; margin: 0 0 12px; color: #60435b; }
+.team-page .team-directory-head h2 {
+  margin: 0; font: 600 clamp(3rem, 5vw, 5.7rem)/1.04 var(--display);
+  letter-spacing: -.055em; color: #211d1b;
+}
+.team-page .team-directory-head h2 em { color: #60435b; }
+.team-page .team-directory-head > p:last-child {
+  max-width: 38ch; margin: 0 0 5px; color: #51494d;
+  font-size: 1.05rem; line-height: 1.7;
+}
+.connected-site.team-page .team-directory .profile-card {
+  counter-increment: member; display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1fr);
+  gap: clamp(22px, 2.6vw, 40px); align-items: stretch;
+  min-width: 0; margin: 0; padding: 0 0 clamp(34px, 4vw, 60px);
+  border: 0; border-bottom: 1px solid #60435b40;
+  background: transparent; text-align: left;
+}
+.connected-site.team-page .profile-portrait {
+  width: 100%; max-width: none; aspect-ratio: 4 / 5;
+  margin: 0; border: 1px solid #60435b40; border-radius: 0;
+  background: #dfd5d9; box-shadow: none;
+  transition: border-color .25s ease, transform .3s ease;
+}
+.connected-site.team-page .profile-portrait:hover,
+.connected-site.team-page .profile-portrait:focus-visible {
+  transform: translateY(-3px); border-color: #60435b;
+}
+.team-page .profile-portrait img,
+.connected-site.team-page .profile-portrait:hover img,
+.connected-site.team-page .profile-portrait:focus-visible img {
+  filter: saturate(.86); transition: filter .3s ease;
+}
+.connected-site.team-page .profile-portrait:hover img,
+.connected-site.team-page .profile-portrait:focus-visible img { filter: saturate(1); }
+.connected-site.team-page .profile-portrait > span:not(.member-initials) {
+  padding: 13px 16px; background: #252329; color: #f4eee6;
+  text-align: left; font: 600 .68rem var(--sans);
+}
+.connected-site.team-page .initials-portrait { background: #d8ccd2; }
+.connected-site.team-page .profile-portrait > .member-initials { color: #60435b; }
+.connected-site.team-page .profile-summary {
+  display: flex; flex-direction: column; align-items: flex-start;
+  min-width: 0; padding: 0!important;
+}
+.team-page .profile-summary::before {
+  content: '0' counter(member) ' / THE PEOPLE';
+  display: block; width: 100%; margin: 0 0 clamp(34px, 4vw, 62px);
+  padding-bottom: 14px; border-bottom: 1px solid #60435b45;
+  color: #60435b; font: 600 .68rem/1.4 var(--mono);
+  letter-spacing: .035em;
+}
+.connected-site.team-page .profile-summary > span {
+  min-height: 0; color: #60435b;
+  font: 600 .7rem/1.5 var(--mono)!important;
+  letter-spacing: .04em;
+}
+.connected-site.team-page .profile-summary h2 {
+  display: block; min-height: 0; margin: 14px 0 20px!important;
+  color: #211d1b; font: 600 clamp(2.1rem, 3vw, 3.5rem)/1.06 var(--display)!important;
+  letter-spacing: -.05em;
+}
+.connected-site.team-page .profile-summary p {
+  max-width: 42ch; min-height: 0; margin: 0 0 24px;
+  color: #51494d; font-size: .99rem!important; line-height: 1.7!important;
+}
+.connected-site.team-page .profile-summary a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  margin-top: auto; padding: 10px 0;
+  border-bottom: 1px solid #60435b; color: #60435b;
+  font: 600 .77rem var(--sans)!important;
+}
+.team-page .profile-summary a:hover { color: #211d1b; }
+
+.connected-site.team-page .team-note {
+  position: relative; isolation: isolate; overflow: hidden;
+  width: 100%; max-width: none; margin: 0;
+  padding: clamp(84px, 8vw, 130px) var(--gutter);
+  border: 0; background: #dfd5d9; color: #211d1b;
+}
+.team-page .team-note-wordmark {
+  right: -.04em; bottom: -.13em; color: #60435b; opacity: .065;
+}
+.team-page .team-note .section-tag { margin: 0 0 30px; color: #60435b; }
+.team-page .team-note h2 {
+  max-width: 1060px; margin: 0 0 42px;
+  font: 600 clamp(3rem, 5.5vw, 6rem)/1.04 var(--display);
+  letter-spacing: -.055em;
+}
+.team-page .team-note a {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  gap: 36px; min-height: 48px; padding: 12px 0;
+  border-bottom: 1px solid #60435b; color: #60435b;
+  font: 600 .88rem var(--sans); text-decoration: none;
+}
+.team-page .team-note a:hover { color: #211d1b; border-color: #211d1b; }
+
+.connected-site.team-page .profile-dialog { border: 1px solid #60435b55; border-radius: 0; background: #f4eee6; }
+.team-page .profile-dialog::backdrop { background: #17141bbb; }
+.team-page .profile-modal-head {
+  grid-template-columns: 120px minmax(0, 1fr) auto;
+  margin-top: 0; padding: 68px 58px 38px; align-items: center;
+}
+.team-page .profile-modal-head > img { width: 120px; height: 135px; border: 0; border-radius: 0; }
+.team-page .profile-modal-head h2 { font-weight: 600; }
+.team-page .profile-modal-head > a { border-color: #60435b70; color: #60435b; }
+.team-page .profile-stats { margin-top: 0; padding-block: 24px; border-color: #60435b40; }
+.team-page .profile-details { padding-top: 43px; }
+.team-page .profile-details h3 { font-weight: 600; }
+.team-page .profile-details li { font-size: .65rem; }
+.team-page .profile-close { border-radius: 0; }
+
+@media (max-width: 1050px) {
+  .connected-site.team-page .team-directory { grid-template-columns: 1fr; }
+  .connected-site.team-page .team-directory .profile-card { grid-template-columns: minmax(0, .52fr) minmax(0, 1fr); }
+  .team-page .profile-summary::before { margin-bottom: 35px; }
+}
+@media (max-width: 760px) {
+  .connected-site.team-page .team-intro { min-height: 0; padding: 88px var(--gutter) 104px; }
+  .team-page .team-intro h1 { font-size: clamp(3rem, 8vw, 4.5rem); }
+  .team-page .team-intro-wordmark { font-size: 26vw; }
+  .connected-site.team-page .founder-note { grid-template-columns: 1fr; gap: 40px; }
+  .team-page .founder-note-heading h2 { font-size: clamp(2.8rem, 8vw, 4.3rem); }
+  .team-page .team-directory-head { grid-template-columns: 1fr; }
+  .team-page .team-directory-head .section-tag { grid-column: 1; }
+  .team-page .team-directory-head > p:last-child { margin-top: 6px; }
+  .team-page .profile-modal-head { grid-template-columns: 100px minmax(0, 1fr); padding: 65px 28px 32px; }
+  .team-page .profile-modal-head > img { width: 100px; height: 112px; }
+  .team-page .profile-modal-head > a { grid-column: 2; justify-self: start; margin: 0; }
+}
+@media (max-width: 600px) {
+  .connected-site.team-page .team-intro { padding: 76px 24px 90px; }
+  .team-page .team-intro h1 { font-size: clamp(2.65rem, 10vw, 3.7rem); }
+  .team-page .team-intro > p:last-child { font-size: 1rem; }
+  .connected-site.team-page .founder-note { padding: 76px 24px; }
+  .connected-site.team-page .founder-note blockquote { padding-left: 18px; }
+  .connected-site.team-page .team-directory { padding: 78px 24px 90px; gap: 55px; }
+  .team-page .team-directory-head { padding-bottom: 30px; margin-bottom: 0; }
+  .team-page .team-directory-head h2 { font-size: clamp(2.7rem, 10vw, 4rem); }
+  .connected-site.team-page .team-directory .profile-card { display: block; padding-bottom: 42px; }
+  .connected-site.team-page .profile-portrait { aspect-ratio: 5 / 4; }
+  .team-page .profile-portrait img { object-position: center 30%; }
+  .connected-site.team-page .profile-summary { padding-top: 25px!important; }
+  .team-page .profile-summary::before { margin-bottom: 23px; }
+  .connected-site.team-page .profile-summary h2 { font-size: clamp(2.3rem, 10vw, 3.1rem)!important; }
+  .connected-site.team-page .team-note { padding: 78px 24px 88px; }
+  .team-page .team-note h2 { font-size: clamp(2.8rem, 10vw, 4rem); }
+  .team-page .team-note-wordmark { font-size: 27vw; }
+  .team-page .profile-modal-head { grid-template-columns: 78px minmax(0, 1fr); gap: 16px; padding: 64px 22px 26px; }
+  .team-page .profile-modal-head > img { width: 78px; height: 88px; }
+  .team-page .profile-modal-head h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .team-page .profile-modal-head > a { grid-column: 1 / -1; }
+}
