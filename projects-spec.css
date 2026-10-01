@@ -1,0 +1,4 @@
+/* Client work labels use the existing project metadata style. */
+.projects-page .client-project-tag { display: inline-block; width: fit-content; margin-bottom: 14px; padding: 6px 9px; border: 1px solid #60435b80; color: #60435b; font: 600 .62rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.projects-page .project-context dt { text-transform: uppercase; }
+.projects-page .project-note > .peek-cta { display: inline-flex; width: fit-content; margin-top: 29px; color: #8dd4d9; border-color: #8dd4d9; }
