@@ -43,9 +43,9 @@ for name, page in pages.items():
 home = pages['index.html'].elements
 assert len([a for _, a in home if a.get('data-node')]) == 6
 assert not any('flip-card' in a.get('class', '').split() for _, a in home)
-assert len([a for _, a in home if 'floating-module' in a.get('class', '').split()]) == 6
+assert len([a for _, a in home if 'floating-module' in a.get('class', '').split()]) == 10
 assert not any('orbit-ring' in a.get('class', '').split() for _, a in home)
-assert len([a for _, a in home if a.get('data-solution')]) == 6
+assert len([a for _, a in home if a.get('data-solution')]) == 10
 assert any('field-motion-toggle' in a.get('class', '').split() for _, a in home)
 assert any(tag == 'select' and attrs.get('name') == 'accomplishment' for tag, attrs in home)
 assert not any(attrs.get('name') == 'service' for _, attrs in home)
