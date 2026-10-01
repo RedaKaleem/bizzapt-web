@@ -33,13 +33,11 @@
 }
 .connected-site .about-story aside {
   position: relative; width: 100%; max-width: 520px; min-height: 0;
-  aspect-ratio: 1; padding: clamp(28px, 3.5vw, 50px);
-  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-  gap: clamp(18px, 2.4vw, 34px);
-  background: #ded4d8; border: 0; overflow: hidden;
+  aspect-ratio: 1; padding: 0;
+  display: block;
+  background: #fff; border: 1px solid rgba(96, 67, 91, .12); overflow: hidden;
 }
-.connected-site .about-story aside img { width: min(75%, 280px); flex: none; }
-.connected-site .about-story aside > span { font-size: clamp(2.1rem, 3vw, 3.2rem); line-height: 1.04; }
+.connected-site .about-story aside img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
 
 .connected-site .values-grid {
   gap: 16px; padding: 30px var(--gutter) 105px;
