@@ -1,0 +1,62 @@
+/* Copy-led homepage sections reuse the site's editorial spacing and palette. */
+.connected-home .field-eyebrow { margin: 0 0 26px; color: #bfa26a; font: 500 .72rem/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.connected-home .floating-hero h1 strong { font-style: italic; font-weight: 500; }
+.connected-home .field-footer { justify-content: flex-start; }
+.connected-home .field-footer > span:first-child { display: block; max-width: 48ch; }
+.connected-home .home-problem { background: #f4eee6; }
+.connected-home .home-why { background: #e7e5e1; }
+.connected-home .home-promise { background: #e5dce1; }
+.connected-home .home-card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: clamp(45px,6vw,76px); }
+.connected-home .home-card-grid-four { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.connected-home .home-card-grid article { min-width: 0; min-height: 250px; display: flex; flex-direction: column; border-top: 2px solid #60435b; padding: clamp(24px,2.8vw,38px); background: rgba(96,67,91,.07); }
+.connected-home .home-card-grid article:nth-child(2) { border-color: #5e9ca2; background: rgba(94,156,162,.1); }
+.connected-home .home-card-grid article:nth-child(3) { border-color: #bfa26a; background: rgba(191,162,106,.13); }
+.connected-home .home-card-grid article:nth-child(4) { border-color: #60435b; }
+.connected-home .home-card-grid article.is-bizzapt { background: #60435b; color: #f4eee6; }
+.connected-home .home-card-grid h3 { margin: 0 0 28px; font: 600 clamp(1.25rem,1.7vw,1.65rem)/1.25 var(--sans); letter-spacing: -.035em; }
+.connected-home .home-card-grid p { margin: auto 0 0; font-size: .97rem; line-height: 1.7; }
+.connected-home .home-section-note { max-width: 70ch; margin: 42px 0 0; padding-top: 24px; border-top: 1px solid var(--rule); font: 500 clamp(1.15rem,1.6vw,1.5rem)/1.5 var(--sans); }
+.connected-home .home-problems-grid { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: clamp(30px,5vw,85px); row-gap: 5px; }
+.connected-home .home-problems-grid .ecosystem-service { border-top: 1px solid var(--rule); border-bottom: 0; }
+.connected-home .home-problems-grid summary { min-height: 85px; font-size: clamp(1rem,1.4vw,1.3rem); line-height: 1.4; }
+.connected-home .home-problems-grid .ecosystem-service p { font-size: .95rem; }
+.connected-home .home-tools-line { max-width: 75ch; margin: 44px 0 24px; color: var(--muted); font: .87rem/1.8 var(--sans); }
+.connected-home .home-promise-thinking { margin-top: 64px; padding-top: 35px; border-top: 1px solid var(--rule); }
+.connected-home .home-promise-thinking h3 { margin: 0 0 12px; font: 500 clamp(1.55rem,2.3vw,2.4rem)/1.2 var(--sans); letter-spacing: -.04em; }
+.connected-home .home-promise-thinking > p { margin: 0; color: var(--muted); }
+.connected-home .home-promise-thinking dl { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 25px; margin: 32px 0; }
+.connected-home .home-promise-thinking dl > div { border-top: 1px solid var(--rule); padding-top: 20px; }
+.connected-home .home-promise-thinking dt { color: var(--plum); font: 600 .78rem var(--mono); text-transform: uppercase; }
+.connected-home .home-promise-thinking dd { margin: 13px 0 0; line-height: 1.7; }
+.connected-home .home-work-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.connected-home .home-work-cards a { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; min-height: 265px; background: #e5dce1; color: #211d1b; border: 1px solid var(--rule); text-decoration: none; overflow: hidden; }
+.connected-home .home-work-cards a.tone-gold { background: #e9e1d2; }
+.connected-home .home-work-cards a.tone-dark { background: #29272a; color: #f4eee6; }
+.connected-home .home-work-cards img { width: 100%; height: 178px; object-fit: cover; }
+.connected-home .home-work-cards b { align-self: center; margin: auto; font: 500 clamp(3.5rem,7vw,7rem)/1 var(--display); letter-spacing: -.08em; }
+.connected-home .home-work-cards a > span { display: block; padding: 15px; border-top: 1px solid currentColor; font: 600 .95rem var(--sans); }
+.connected-home .home-work-cards small { display: block; margin-top: 5px; font: 400 .7rem/1.4 var(--sans); opacity: .75; }
+.connected-home .contact-copy-email { margin-left: 10px; padding: 4px 7px; border: 1px solid currentColor; background: transparent; color: inherit; font: 500 .68rem var(--mono); cursor: pointer; }
+.connected-home .contact-copy-email:focus-visible { outline: 2px solid #8dd4d9; outline-offset: 3px; }
+@media (max-width: 1000px) {
+ .connected-home .home-card-grid-four { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .connected-home .home-work-cards { grid-template-columns: 1fr; }
+ .connected-home .home-work-cards a { min-height: 180px; }
+}
+@media (max-width: 700px) {
+ .connected-home .home-card-grid, .connected-home .home-card-grid-four, .connected-home .home-problems-grid, .connected-home .home-promise-thinking dl { grid-template-columns: 1fr; }
+ .connected-home .home-card-grid article { min-height: 190px; }
+ .connected-home .home-work-cards { grid-template-columns: repeat(3,minmax(0,1fr)); }
+ .connected-home .home-work-cards a { min-height: 160px; }
+ .connected-home .home-work-cards img { height: 95px; }
+ .connected-home .home-work-cards b { font-size: 3rem; }
+ .connected-home .home-work-cards a > span { padding: 10px; font-size: .75rem; }
+ .connected-home .home-work-cards small { font-size: .58rem; }
+ .connected-home .floating-module:nth-child(5) { left: 78%; top: 115px; }
+ .connected-home .floating-module:nth-child(6) { left: 83%; top: 290px; }
+}
+@media (max-width: 430px) {
+ .connected-home .home-work-cards { grid-template-columns: 1fr; }
+ .connected-home .home-work-cards a { min-height: 190px; }
+ .connected-home .home-work-cards img { height: 160px; }
+}

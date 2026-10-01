@@ -19,6 +19,9 @@ export function resolveChallenge(hash) {
   return challenges.includes(key) ? key : challengeAliases[key] || 'launch';
 }
 export const accomplishmentByChallenge = {
-  launch: 'Launch something new', grow: 'Grow the business', optimize: 'Fix inefficient operations',
-  scale: 'Connect our systems', unsure: 'Not sure yet'
+  launch: "We're launching something new",
+  grow: "Our website or brand doesn't reflect the business",
+  optimize: 'We do too much by hand',
+  scale: "Our tools don't talk to each other",
+  unsure: 'Not sure yet'
 };
