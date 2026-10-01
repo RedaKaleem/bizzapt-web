@@ -1,4 +1,4 @@
-import { resolveChallenge } from './connections-data.mjs';
+import { resolveChallenge } from './connections-data.mjs?v=spec-1';
 
 
 // Shared accessibility foundations for every page.

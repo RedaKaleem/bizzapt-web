@@ -1,4 +1,4 @@
-import { accomplishmentByChallenge } from './connections-data.mjs';
+import { accomplishmentByChallenge } from './connections-data.mjs?v=spec-1';
 
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 const floatingHero = document.querySelector('.floating-hero');

@@ -1,5 +1,5 @@
 /* The founder and team now live within About's existing editorial system. */
-.connected-site.about-page .about-intro h1 { font-size: clamp(3.1rem,5.3vw,5.7rem); max-width: 1300px; }
+.connected-site.about-page .about-intro h1 { font-size: clamp(3.1rem,4.8vw,5.3rem); max-width: 1300px; }
 .connected-site.about-page .founder-note { align-items: start; }
 .connected-site.about-page .founder-note blockquote > p + p { margin-top: 20px; }
 .connected-site.about-page .about-drives { padding-top: clamp(78px,8vw,120px); background: #f4eee6; }
