@@ -1,0 +1,20 @@
+@media (hover: hover) and (pointer: fine) {
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2147483647;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #60435b;
+    box-shadow: 0 0 0 1px #f4eee680;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(-30px, -30px, 0);
+    transition: opacity 140ms ease, background-color 180ms ease;
+  }
+
+  .cursor-dot.is-visible { opacity: 1; }
+  .cursor-dot.is-gold { background: #bfa26a; box-shadow: 0 0 0 1px #211d1b80; }
+}
